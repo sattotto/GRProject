@@ -10,8 +10,6 @@
 .vscode/*
 /Assets/AssetStore
 /Assets/AssetStore.meta
-/Assets/Standard Assets
-/Assets/Standard Assets.meta
 
 # Visual Studio 2015 cache directory
 /.vs/
