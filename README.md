@@ -6,3 +6,8 @@
 
 http://unity-chan.com/contents/guideline/
 © Unity Technologies Japan/UCL
+
+## AssetStore
+* OldOfficeProps
+* Wood texture floor_01
+* Oculus integration
