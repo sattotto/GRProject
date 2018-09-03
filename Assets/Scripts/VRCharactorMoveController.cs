@@ -6,7 +6,7 @@ public class VRCharactorMoveController : MonoBehaviour {
 
     public float speed = 3.0F;
     public float jumpSpeed = 8.0F;
-    public float gravity = 20.0F;
+    public float gravity = 2000.0F;
     private Vector3 moveDirection = Vector3.zero;
 
     private const float ANGLE_LIMIT_UP = 60f;
