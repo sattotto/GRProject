@@ -28,9 +28,6 @@ public class GrabController : MonoBehaviour {
             GameObject prefab = (GameObject)Resources.Load("Prefabs/ToyCubePf");
             // プレハブからインスタンスを生成
             Instantiate(prefab, new Vector3(1, 1, 1), Quaternion.identity);
-        } else
-        {
-            
         }
     }
 

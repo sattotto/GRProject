@@ -42,7 +42,6 @@ public class VRCharactorMoveController : MonoBehaviour {
         this.transform.eulerAngles += new Vector3(0, stickR.x, stickR.y);
 
         float angle_z = 180f <= transform.eulerAngles.z ? transform.eulerAngles.z - 360 : transform.eulerAngles.z;
-        Debug.Log(angle_z);
         transform.eulerAngles = new Vector3(
             0,
             transform.eulerAngles.y,
