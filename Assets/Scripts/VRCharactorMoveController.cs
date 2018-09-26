@@ -20,11 +20,12 @@ public class VRCharactorMoveController : MonoBehaviour {
 
     private void MoveController()
     {
+        // 左手のアナログスティックの向きを取得
         CharacterController controller = GetComponent<CharacterController>();
         if (controller.isGrounded)
         {
             Vector2 stickL = OVRInput.Get(OVRInput.RawAxis2D.LThumbstick);
-            moveDirection = new Vector3(-stickL.y * speed, 0, stickL.x * speed);
+            moveDirection = new Vector3(stickL.x * speed, 0, stickL.y * speed);
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
             if (Input.GetButton("Jump"))
