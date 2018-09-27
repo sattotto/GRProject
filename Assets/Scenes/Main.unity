@@ -1518,7 +1518,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 511843265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.0594673, y: 1.5, z: 3.1760335}
+  m_LocalPosition: {x: 6.0594673, y: 1.3, z: 3.1760335}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1998538604}
@@ -1542,7 +1542,7 @@ CharacterController:
   m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -0.7, z: 0}
+  m_Center: {x: 0, y: -0.2, z: 0}
 --- !u!114 &511843268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5716,7 +5716,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1998538603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0075325966, y: 0.5, z: -0.0040335655}
+  m_LocalPosition: {x: -0.15, y: 0.5, z: 0.5}
   m_LocalScale: {x: 0.8000005, y: 0.8, z: 0.8000005}
   m_Children:
   - {fileID: 1475232722}
@@ -5853,7 +5853,7 @@ MonoBehaviour:
   ThirdPersonLayer:
     layerIndex: 0
   ShowFirstPerson: 1
-  ShowThirdPerson: 1
+  ShowThirdPerson: 0
   Capabilities: -1
   SurfaceShader: {fileID: 4800000, guid: d0f6e1942d3d1f946a96fd8a00175474, type: 3}
   SurfaceShaderSelfOccluding: {fileID: 4800000, guid: 10513ef587704324487f3061a7e6699d,

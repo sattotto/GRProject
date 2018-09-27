@@ -40,7 +40,7 @@ public class VRCharactorMoveController : MonoBehaviour {
     {
         // 右手のアナログスティックの向きを取得
         Vector2 stickR = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
-        this.transform.eulerAngles += new Vector3(0, stickR.x, stickR.y);
+        this.transform.eulerAngles += new Vector3(0, stickR.x, 0);
 
         float angle_z = 180f <= transform.eulerAngles.z ? transform.eulerAngles.z - 360 : transform.eulerAngles.z;
         transform.eulerAngles = new Vector3(
