@@ -10,14 +10,12 @@ public class GrabController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "item0") {
-			Debug.Log("hoge");
             itemGrabFlg = true;
 		}
 	}
 
 	void OnTriggerExit(Collider other){
         if (other.gameObject.tag == "item0") {
-            Debug.Log("fuga");
             itemGrabFlg = false;
         }
     }

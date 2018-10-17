@@ -28,9 +28,6 @@ public class VRCharactorMoveController : MonoBehaviour {
             moveDirection = new Vector3(stickL.x * speed, 0, stickL.y * speed);
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
-            if (Input.GetButton("Jump"))
-                moveDirection.y = jumpSpeed;
-
         }
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);

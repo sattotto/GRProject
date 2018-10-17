@@ -14,7 +14,7 @@ public class OpenDoor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown("space") && isNear) {
+		if(Input.GetButton("Jump") && isNear) {
 			animator.SetBool ("isNear", !animator.GetBool ("isNear"));
 		}
 	}
