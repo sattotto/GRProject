@@ -14,13 +14,18 @@ public class PlayerEmotions : ImageResultsListener
     public float currentSadness;
     public float currentAnger;
     public float currentSurprise;
+
+    public static float[,] currentEmotionArray = new float[6, 30]; // 0埋めで初期化
+
+    private int rateCount = 0;
+
     public FeaturePoint[] featurePointsList;
 
     public override void onFaceFound(float timestamp, int faceId)
     {
         Debug.Log("Found the face");
     }
-
+    
     public override void onFaceLost(float timestamp, int faceId)
     {
         Debug.Log("Lost the face");
@@ -41,11 +46,43 @@ public class PlayerEmotions : ImageResultsListener
             face.Emotions.TryGetValue(Emotions.Disgust, out currentDisgust);
             face.Emotions.TryGetValue(Emotions.Sadness, out currentSadness);
             face.Emotions.TryGetValue(Emotions.Anger, out currentAnger);
-            face.Emotions.TryGetValue(Emotions.Joy, out currentSurprise);
+            face.Emotions.TryGetValue(Emotions.Surprise, out currentSurprise);
 
             //Retrieve the coordinates of the facial landmarks (face feature points)
             featurePointsList = face.FeaturePoints;
-
+            Debug.Log("hoge");
+            setEmotionData(rateCount++);
+            if (rateCount == 30) { rateCount = 0; }
         }
+    }
+
+    private void setEmotionData(int index)
+    {
+        currentEmotionArray[0, index] = currentJoy;
+        currentEmotionArray[1, index] = currentFear;
+        currentEmotionArray[2, index] = currentDisgust;
+        currentEmotionArray[3, index] = currentSadness;
+        currentEmotionArray[4, index] = currentAnger;
+        currentEmotionArray[5, index] = currentSurprise;
+    }
+
+    /// <summary>呼ばれたらどの感情が一番大きく、その数値はいくらだったかを返却します。</summary>
+    public static int[] getMaxEmotion()
+    {
+        int[] returnEmo = new int[2];
+        for(int EmoNum = 0; EmoNum < 6; EmoNum++)
+        {
+            float sum = 0;
+            for (int second = 0;second < 30;second++)
+            {
+                sum += currentEmotionArray[EmoNum, second];
+            }
+            if (returnEmo[1] < sum)
+            {
+                returnEmo[0] = EmoNum;
+                returnEmo[1] = (int)sum;
+            }
+        }
+        return returnEmo;
     }
 }
