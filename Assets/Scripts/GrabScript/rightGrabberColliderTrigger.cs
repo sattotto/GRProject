@@ -50,6 +50,6 @@ public class rightGrabberColliderTrigger : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
+
 	}
 }
