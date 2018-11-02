@@ -14,10 +14,11 @@ public class PlayerEmotions : ImageResultsListener
     public float currentSadness;
     public float currentAnger;
     public float currentSurprise;
+    public float currentContempt;
 
-    public static float[,] currentEmotionArray = new float[6, 30]; // 0埋めで初期化
+    public static float[,] currentEmotionArray = new float[7, 30]; // 0埋めで初期化
 
-    private int rateCount = 0;
+    private static int rateCount = 0;
 
     public FeaturePoint[] featurePointsList;
 
@@ -47,6 +48,7 @@ public class PlayerEmotions : ImageResultsListener
             face.Emotions.TryGetValue(Emotions.Sadness, out currentSadness);
             face.Emotions.TryGetValue(Emotions.Anger, out currentAnger);
             face.Emotions.TryGetValue(Emotions.Surprise, out currentSurprise);
+            face.Emotions.TryGetValue(Emotions.Contempt, out currentContempt);
 
             //Retrieve the coordinates of the facial landmarks (face feature points)
             featurePointsList = face.FeaturePoints;
@@ -64,13 +66,14 @@ public class PlayerEmotions : ImageResultsListener
         currentEmotionArray[3, index] = currentSadness;
         currentEmotionArray[4, index] = currentAnger;
         currentEmotionArray[5, index] = currentSurprise;
+        currentEmotionArray[6, index] = currentContempt;
     }
 
     /// <summary>呼ばれたらどの感情が一番大きく、その数値はいくらだったかを返却します。</summary>
     public static int[] getMaxEmotion()
     {
         int[] returnEmo = new int[2];
-        for(int EmoNum = 0; EmoNum < 6; EmoNum++)
+        for(int EmoNum = 0; EmoNum < currentEmotionArray.GetLength(0); EmoNum++)
         {
             float sum = 0;
             for (int second = 0;second < 30;second++)

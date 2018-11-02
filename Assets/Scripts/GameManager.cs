@@ -8,14 +8,13 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKey(KeyCode.Space))
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            int[] hoge = new int[2];
-            hoge = PlayerEmotions.getMaxEmotion();
-            Debug.Log("EmoNum : " + hoge[0] +", EmoValue : " + hoge[1]);
+            NarrativeController.getEmotion();
         }
     }
 }
