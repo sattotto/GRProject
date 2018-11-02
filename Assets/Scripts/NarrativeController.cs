@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class NarrativeController : MonoBehaviour {
 
-    enum EmotionEnum: int
+    enum EmotionEnum
     {
-        Joy = 0, Fear, Disgust, Sadness, Anger, Surprise, Contempt
+        Joy,
+        Fear,
+        Disgust,
+        Sadness,
+        Anger,
+        Surprise,
+        Contempt
     }
 
-    private static int[] EmotionValue = new int[2];
+    static int[] EmotionValue = new int[2];
 
-    public static void getEmotion()
+    public static string getEmotion()
     {
         EmotionValue = PlayerEmotions.getMaxEmotion();
-        Debug.Log("EmoNum : " + EmotionValue[0] + ", EmoValue : " + EmotionValue[1]);
+        Debug.Log("EmoNum : " + EmotionValue[0] + ", EmoValue : " + EmotionValue[1] + ", Emotion : " + (EmotionEnum)EmotionValue[0]);
+        EmotionEnum hoge = (EmotionEnum)EmotionValue[0];
+        return hoge.ToString();
     }
 
     public static string GrabNarrative(string targetObj, string grabObj) {
-        return targetObj + "から、" + grabObj + "を取り出した";
+        return getEmotion() + "な顔をして," + targetObj + "から、" + grabObj + "を取り出した";
     }
 }
