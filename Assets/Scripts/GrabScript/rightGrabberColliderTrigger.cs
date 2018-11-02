@@ -22,7 +22,7 @@ public class rightGrabberColliderTrigger : MonoBehaviour {
     {
         if (other.gameObject.tag == "targetObj-1")
         {
-            if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger))
+            if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) && GrabController.itemGrabFlg == true)
             {
                 // プレハブを取得
                 GameObject prefab = (GameObject)Resources.Load("Prefabs/ToyCube");
