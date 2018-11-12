@@ -52,7 +52,6 @@ public class PlayerEmotions : ImageResultsListener
 
             //Retrieve the coordinates of the facial landmarks (face feature points)
             featurePointsList = face.FeaturePoints;
-            Debug.Log("hoge");
             setEmotionData(rateCount++);
             if (rateCount == 30) { rateCount = 0; }
         }

@@ -23,6 +23,12 @@ public class GrabController : MonoBehaviour {
             //Instantiate(prefab, new Vector3(1, 1, 1), Quaternion.identity);
             Instantiate(prefab, leftHand.transform.position, Quaternion.identity);
         }
+
+        if(itemGrabFlg == true && objItemGrabFlg == true && OVRInput.GetDown(OVRInput.RawButton.RHandTrigger))
+        {
+            GameObject prefab = (GameObject)Resources.Load("Prefabs/ToyCube");
+            Instantiate(prefab, rightHand.transform.position + new Vector3(0, 0.02f, 0), Quaternion.identity);
+        }
     }
 
 }
