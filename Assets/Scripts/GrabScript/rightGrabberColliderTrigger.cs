@@ -21,18 +21,15 @@ public class rightGrabberColliderTrigger : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
+        Debug.Log("Right Hand stay " + other.gameObject.tag);
         if (other.gameObject.tag == "targetObj-1")
         {
-            Debug.Log("stay " + other.gameObject.tag);
             GrabController.objItemGrabFlg = true;
+            GrabController.objectName = other.gameObject.name;
         }
     }
 
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "item0")
-        {
-            GrabController.itemGrabFlg = false;
-        }
         if (other.gameObject.tag == "targetObj-1")
         {
             GrabController.objItemGrabFlg = false;
