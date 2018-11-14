@@ -40,6 +40,6 @@ public class GrabberTrigerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
+		if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) && OVRInput.GetDown(OVRInput.RawButton.LHandTrigger)) { GrabController.objItemGrabFlg = false; } else {  }
 	}
 }
