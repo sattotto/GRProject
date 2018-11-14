@@ -15,7 +15,9 @@ public class GrabberTrigerController : MonoBehaviour {
             Debug.Log("in " + other.gameObject.tag);
             GrabController.itemGrabFlg = true;
         }
-        
+        if (other.gameObject.tag == "targetObj-1") {
+            GrabController.objItemGrabFlg = true;
+        }
     }
 
     void OnTriggerStay(Collider other)
@@ -23,7 +25,6 @@ public class GrabberTrigerController : MonoBehaviour {
         Debug.Log("Hand stay " + other.gameObject.tag);
         if (other.gameObject.tag == "targetObj-1")
         {
-            GrabController.objItemGrabFlg = true;
             GrabController.objectName = other.gameObject.name;
         }
     }

@@ -28,11 +28,12 @@ public class GrabController : MonoBehaviour {
         }
         */
         if(itemGrabFlg == true && objItemGrabFlg == true && (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) || OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))) {
-            GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", "ToyCube")); // ここでprefabの名前を入れる
+            GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", "Gold")); // ここでprefabの名前を入れる
             Vector3 GrabPos = OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) ? rightHand.transform.position : leftHand.transform.position;
             Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
             Debug.Log(NarrativeController.GrabNarrative(objectName, "箱"));
             objectName = "";
+            objItemGrabFlg = false;
         }
     }
 
