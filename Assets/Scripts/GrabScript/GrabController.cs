@@ -11,10 +11,8 @@ public class GrabController : MonoBehaviour {
     public static bool objItemGrabFlg = false;
 
     public static string objectName = "";
-
-    void Start() {
-
-    }
+    private List<string[]> objectKnowledgeList;
+    private int index;
 
 	void Update () {
         /*
@@ -28,13 +26,28 @@ public class GrabController : MonoBehaviour {
         }
         */
         if(itemGrabFlg == true && objItemGrabFlg == true && (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) || OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))) {
-            GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", "Gold")); // ここでprefabの名前を入れる
+            getKnowledgeList(objectName);
+            GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", objectKnowledgeList[index][0])); // ここでprefabの名前を入れる
             Vector3 GrabPos = OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) ? rightHand.transform.position : leftHand.transform.position;
             Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
-            Debug.Log(NarrativeController.GrabNarrative(objectName, "箱"));
+            Debug.Log(NarrativeController.GrabNarrative(objectName, objectKnowledgeList[index][1])); // 生成文章
             objectName = "";
             objItemGrabFlg = false;
         }
     }
 
+    void getKnowledgeList(string objName) {
+        objectKnowledgeList = CSVReader.ReadCSVFile(objName);
+        getListIndex();
+    }
+
+    void getListIndex(){
+        string EmoString = NarrativeController.getEmotion();
+        for(int i = 0;i < objectKnowledgeList.Count;i++) {
+            var item = objectKnowledgeList[i];
+            if (item[2].Contains(EmoString)) {
+                index = i;
+            }
+        }
+    }
 }

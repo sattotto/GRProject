@@ -85,6 +85,9 @@ public class PlayerEmotions : ImageResultsListener
                 returnEmo[1] = (int)sum;
             }
         }
+        if(returnEmo[1] < 100) {
+            returnEmo[0] = 7;
+        }
         return returnEmo;
     }
 }
