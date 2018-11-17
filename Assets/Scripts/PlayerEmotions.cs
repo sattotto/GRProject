@@ -36,8 +36,7 @@ public class PlayerEmotions : ImageResultsListener
     {
         Debug.Log("Got face results");
 
-        foreach (KeyValuePair<int, Face> pair in faces)
-        {
+        foreach (KeyValuePair<int, Face> pair in faces) {
             int FaceId = pair.Key;  // The Face Unique Id.
             Face face = pair.Value;    // Instance of the face class containing emotions, and facial expression values.
 
@@ -52,7 +51,6 @@ public class PlayerEmotions : ImageResultsListener
 
             //Retrieve the coordinates of the facial landmarks (face feature points)
             featurePointsList = face.FeaturePoints;
-            Debug.Log("hoge");
             setEmotionData(rateCount++);
             if (rateCount == 30) { rateCount = 0; }
         }
@@ -70,8 +68,7 @@ public class PlayerEmotions : ImageResultsListener
     }
 
     /// <summary>呼ばれたらどの感情が一番大きく、その数値はいくらだったかを返却します。</summary>
-    public static int[] getMaxEmotion()
-    {
+    public static int[] getMaxEmotion() {
         int[] returnEmo = new int[2];
         for(int EmoNum = 0; EmoNum < currentEmotionArray.GetLength(0); EmoNum++)
         {
@@ -85,6 +82,9 @@ public class PlayerEmotions : ImageResultsListener
                 returnEmo[0] = EmoNum;
                 returnEmo[1] = (int)sum;
             }
+        }
+        if(returnEmo[1] < 100) {
+            returnEmo[0] = 7;
         }
         return returnEmo;
     }

@@ -1,0 +1,4 @@
+﻿#Prefab Name,Object Name, Emotion Type, Emotion Value, After Emotion Type
+ColaCan,コーラ,Fear Disgust Sadness Surprise,100,
+Gold,お金,Joy Anger Contempt,100,
+cockroach,虫,None,0,
