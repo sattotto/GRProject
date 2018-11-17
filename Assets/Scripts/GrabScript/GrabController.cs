@@ -12,7 +12,7 @@ public class GrabController : MonoBehaviour {
 
     public static string objectName = "";
     private List<string[]> objectKnowledgeList;
-    private int index;
+    private int index = 0;
 
 	void Update () {
         /*
@@ -31,8 +31,7 @@ public class GrabController : MonoBehaviour {
             Vector3 GrabPos = OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) ? rightHand.transform.position : leftHand.transform.position;
             Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
             Debug.Log(NarrativeController.GrabNarrative(objectName, objectKnowledgeList[index][1])); // 生成文章
-            objectName = "";
-            objItemGrabFlg = false;
+            resetParam();
         }
     }
 
@@ -49,5 +48,11 @@ public class GrabController : MonoBehaviour {
                 index = i;
             }
         }
+    }
+
+    void resetParam() {
+        objectName = "";
+        objItemGrabFlg = false;
+        index = 0;
     }
 }

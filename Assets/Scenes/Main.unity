@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 51021933}
   - component: {fileID: 51021934}
   m_Layer: 0
-  m_Name: deskObjects (2)
+  m_Name: deskObjects
   m_TagString: targetObj-1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1145,6 +1145,25 @@ Prefab:
     - target: {fileID: 1085097881941292, guid: 8e00364320862a746a6e67a5af5e5979, type: 2}
       propertyPath: m_Name
       value: Pot_tree prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 65671619047029818, guid: 8e00364320862a746a6e67a5af5e5979,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 0.012224307
+      objectReference: {fileID: 0}
+    - target: {fileID: 65671619047029818, guid: 8e00364320862a746a6e67a5af5e5979,
+        type: 2}
+      propertyPath: m_Center.y
+      value: 0.00015754347
+      objectReference: {fileID: 0}
+    - target: {fileID: 65671619047029818, guid: 8e00364320862a746a6e67a5af5e5979,
+        type: 2}
+      propertyPath: m_Center.z
+      value: 0.006112154
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555850710414244, guid: 8e00364320862a746a6e67a5af5e5979, type: 2}
+      propertyPath: m_TagString
+      value: targetObj-1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e00364320862a746a6e67a5af5e5979, type: 2}
@@ -3038,7 +3057,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069990361}
   m_Layer: 0
-  m_Name: deskObject (1)
+  m_Name: deskObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3265,7 +3284,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1186039294}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b58a41d2cccbef14fbba41225e469907, type: 3}
   m_Name: 
@@ -3280,7 +3299,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1186039294}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9db04d0f9cdf0c45bab39f4268dc6d9, type: 3}
   m_Name: 
@@ -4962,7 +4981,7 @@ GameObject:
   - component: {fileID: 1670701091}
   - component: {fileID: 1670701092}
   m_Layer: 0
-  m_Name: deskObjects (3)
+  m_Name: deskObjects
   m_TagString: targetObj-1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5103,6 +5122,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 65671619047029818, guid: 8e00364320862a746a6e67a5af5e5979,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 0.012224307
+      objectReference: {fileID: 0}
+    - target: {fileID: 65671619047029818, guid: 8e00364320862a746a6e67a5af5e5979,
+        type: 2}
+      propertyPath: m_Center.y
+      value: 0.00015754347
+      objectReference: {fileID: 0}
+    - target: {fileID: 65671619047029818, guid: 8e00364320862a746a6e67a5af5e5979,
+        type: 2}
+      propertyPath: m_Center.z
+      value: 0.006112154
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555850710414244, guid: 8e00364320862a746a6e67a5af5e5979, type: 2}
+      propertyPath: m_TagString
+      value: targetObj-1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e00364320862a746a6e67a5af5e5979, type: 2}
   m_IsPrefabAsset: 0
@@ -5191,7 +5229,7 @@ GameObject:
   - component: {fileID: 1759014216}
   - component: {fileID: 1759014217}
   m_Layer: 0
-  m_Name: deskObjects (1)
+  m_Name: deskObjects
   m_TagString: targetObj-1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
