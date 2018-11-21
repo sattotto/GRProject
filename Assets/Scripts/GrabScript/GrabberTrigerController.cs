@@ -10,9 +10,8 @@ public class GrabberTrigerController : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "item0")
-        {
-            Debug.Log("in " + other.gameObject.tag);
+        Debug.Log("in " + other.gameObject.tag);
+        if (other.gameObject.tag == "item0") {
             GrabController.itemGrabFlg = true;
         }
         if (other.gameObject.tag == "targetObj-1") {
@@ -23,24 +22,23 @@ public class GrabberTrigerController : MonoBehaviour {
     void OnTriggerStay(Collider other)
     {
         Debug.Log("Hand stay " + other.gameObject.tag);
-        if (other.gameObject.tag == "targetObj-1")
-        {
+        if (other.gameObject.tag == "targetObj-1") {
             GrabController.objectName = other.gameObject.name;
         }
     }
 
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "targetObj-1")
-        {
-            GrabController.objItemGrabFlg = false;
-        }
-		if (other.gameObject.tag == "item0" && (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) || OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))) {
+        if (other.gameObject.tag == "item0") {
             GrabController.itemGrabFlg = false;
+        }
+		if (other.gameObject.tag == "targetObj-1") {
+            GrabController.objItemGrabFlg = false;
         }
     }
 
     // Update is called once per frame
     void Update () {
 		if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) && OVRInput.GetDown(OVRInput.RawButton.LHandTrigger)) { GrabController.objItemGrabFlg = false; } else {  }
-	}
+        Debug.Log("itemGrabFlg = " + GrabController.itemGrabFlg + " : objItemGrabFlg = " + GrabController.objItemGrabFlg);
+    }
 }
