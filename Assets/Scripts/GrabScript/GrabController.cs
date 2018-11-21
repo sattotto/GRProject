@@ -9,8 +9,10 @@ public class GrabController : MonoBehaviour {
 
     public static bool itemGrabFlg = false;
     public static bool objItemGrabFlg = false;
+    public static bool grabingObjectFlg = false;
 
     public static string objectName = "";
+    public static string grabingObjectName = "";
     private List<string[]> objectKnowledgeList;
     private int index = 0;
 
@@ -32,7 +34,16 @@ public class GrabController : MonoBehaviour {
             Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
             Debug.Log(NarrativeController.GrabNarrative(objectName, objectKnowledgeList[index][1])); // 生成文章
             GameManager.writeText(NarrativeController.GrabNarrative(objectName, objectKnowledgeList[index][1]));
+            grabingObjectName = objectKnowledgeList[index][1];
+            grabingObjectFlg = true;
             resetParam();
+        }
+
+        if(grabingObjectFlg && (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.3 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.3)) {
+                Debug.Log(NarrativeController.putThrowNarrative(grabingObjectName));
+                GameManager.writeText(NarrativeController.putThrowNarrative(grabingObjectName));
+                grabingObjectFlg = false;
+                grabingObjectName = "";
         }
     }
 

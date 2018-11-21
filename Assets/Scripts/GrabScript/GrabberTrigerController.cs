@@ -28,7 +28,7 @@ public class GrabberTrigerController : MonoBehaviour {
     }
 
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "item0") {
+        if (other.gameObject.tag == "item0" && !(OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.7 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.7)) {
             GrabController.itemGrabFlg = false;
         }
 		if (other.gameObject.tag == "targetObj-1") {
