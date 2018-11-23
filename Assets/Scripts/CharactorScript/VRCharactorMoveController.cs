@@ -12,14 +12,24 @@ public class VRCharactorMoveController : MonoBehaviour {
     private const float ANGLE_LIMIT_UP = 60f;
     private const float ANGLE_LIMIT_DOWN = -60f;
 
-    void Update()
-    {
+    void Update() {
         MoveController();
         VisionController();
     }
 
-    private void MoveController()
-    {
+    // 食べる、飲むなどの処理
+    void OnTriggerStay(Collider other) {
+        if (GrabController.grabingObjectFlg && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
+            Debug.Log(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
+            GameManager.writeText(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
+            GrabController.grabingObjectName = "";
+            GrabController.grabingObjectFlg = false;
+            Destroy(other.gameObject);
+            Debug.Log("eating or drinking");
+        }
+    }
+
+    private void MoveController() {
         // 左手のアナログスティックの向きを取得
         CharacterController controller = GetComponent<CharacterController>();
         if (controller.isGrounded)

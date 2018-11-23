@@ -1,5 +1,5 @@
 #Prefab Name,Object Name, Emotion Type, Emotion Value, After Emotion Type
-ToyCube,土,Joy Fear,,
-ToyCube,石,Joy Fear,,
-ToyCube,花,Anger,100,
-ToyCube,虫,None,0,
+Dirt,土,Joy Fear,100,
+ToyCube,石,Joy Fear,100,
+cockroach,虫,None,0,
+,観葉植物,,,

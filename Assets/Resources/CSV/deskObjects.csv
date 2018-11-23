@@ -1,6 +1,6 @@
 #Prefab Name,Object Name, Emotion Type, Emotion Value, After Emotion Type
-ToyCube,書類,Fear Disgust,100,
-ToyCube,お菓子,Disgust Contempt,100,
-ToyCube,パソコン,Joy Anger,100,
-ToyCube,本,Sadness Surprise,100,
-ToyCube,腐った食べ物,None,0,
+Paper,書類,Fear Disgust,100,
+Chips_Bag,お菓子,Joy Disgust Contempt,100,
+book_0001a,本,Anger Sadness Surprise,100,
+Mushroom,毒キノコ,None,0,
+,机,,,

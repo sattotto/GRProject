@@ -9,6 +9,8 @@
 * Oculus integration
 * Simple city plain
 * Cola Can
+* Books
+* FREE Food Pack
 
 ## 3D Model
 * https://www.turbosquid.com/AssetManager/Index.cfm?stgAction=getFiles&subAction=Download&intID=556109&intType=3
