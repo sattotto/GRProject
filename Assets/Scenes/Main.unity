@@ -1056,7 +1056,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4790015206267544, guid: 8e00364320862a746a6e67a5af5e5979, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1085097881941292, guid: 8e00364320862a746a6e67a5af5e5979, type: 2}
       propertyPath: m_Name
@@ -1114,7 +1114,7 @@ Transform:
   - {fileID: 1563575870}
   - {fileID: 2063810668}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &349774058
 Prefab:
@@ -5843,8 +5843,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1834720453}
   - component: {fileID: 1834720454}
+  - component: {fileID: 1834720455}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ViewCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5875,6 +5876,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.28883338, y: 0.22763702, z: 0.21751797}
   m_Center: {x: -0.0011246252, y: -0.13911353, z: 0.47}
+--- !u!114 &1834720455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1834720452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66bb9f381c99ed419aa6caedb67331e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1841206196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a,

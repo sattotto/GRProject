@@ -45,6 +45,10 @@ public class NarrativeController : MonoBehaviour {
         }
         return "";
     }
+
+    public static string viewObjectNarrative(string grabObj) {
+        return getEmotionText() + grabObj + "観察した。";
+    }
 }
 
 // enum定義のヘルパクラス
