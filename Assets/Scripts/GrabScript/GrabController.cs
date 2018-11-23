@@ -17,18 +17,9 @@ public class GrabController : MonoBehaviour {
     private int index = 0;
 
 	void Update () {
-        /*
-        if (OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))
-        {
-            // プレハブを取得
-            GameObject prefab = (GameObject)Resources.Load("Prefabs/ToyCubePf");
-            // プレハブからインスタンスを生成
-            //Instantiate(prefab, new Vector3(1, 1, 1), Quaternion.identity);
-            Instantiate(prefab, leftHand.transform.position, Quaternion.identity);
-        }
-        */
         if(itemGrabFlg == true && objItemGrabFlg == true && (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) || OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))) {
             getKnowledgeList(objectName);
+            objectName = objectKnowledgeList[objectKnowledgeList.Count-1][1];
             GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", objectKnowledgeList[index][0])); // ここでprefabの名前を入れる
             Vector3 GrabPos = OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) ? rightHand.transform.position : leftHand.transform.position;
             Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
@@ -38,7 +29,7 @@ public class GrabController : MonoBehaviour {
             grabingObjectFlg = true;
             resetParam();
         }
-
+        
         if(grabingObjectFlg && (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.2)) {
                 Debug.Log(NarrativeController.putThrowNarrative(grabingObjectName));
                 GameManager.writeText(NarrativeController.putThrowNarrative(grabingObjectName));
