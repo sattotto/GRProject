@@ -36,7 +36,13 @@ public class NarrativeController : MonoBehaviour {
         return getEmotionText() + grabObj + "を置いた。";
     }
 
-    public static string eatDrinkNarrative(string grabObj) {
+    public static string eatDrinkNarrative(string grabObj, string grabObjTag) {
+        if (grabObjTag == "eat") {
+            return getEmotionText() + grabObj + "を食べた。";
+        }
+        if (grabObjTag == "drink") {
+            return getEmotionText() + grabObj + "を飲んだ。";
+        }
         return "";
     }
 }

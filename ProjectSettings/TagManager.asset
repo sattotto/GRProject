@@ -7,6 +7,8 @@ TagManager:
   - item0
   - grabObj
   - targetObj-1
+  - eat
+  - drink
   layers:
   - Default
   - TransparentFX

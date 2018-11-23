@@ -39,7 +39,7 @@ public class GrabController : MonoBehaviour {
             resetParam();
         }
 
-        if(grabingObjectFlg && (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.3 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.3)) {
+        if(grabingObjectFlg && (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.2)) {
                 Debug.Log(NarrativeController.putThrowNarrative(grabingObjectName));
                 GameManager.writeText(NarrativeController.putThrowNarrative(grabingObjectName));
                 grabingObjectFlg = false;
