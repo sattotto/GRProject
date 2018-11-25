@@ -14,11 +14,9 @@ public class ViewObject : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) {
-		Debug.Log(other.gameObject.name);
 		now = (int)Time.time;
-		if (!flg && (now-starttime) > 3) {
+		if (!flg && (now-starttime) > 3 && other.gameObject.tag != "hand") {
 			flg = true;
-			Debug.Log(NarrativeController.viewObjectNarrative(GrabController.grabingObjectName));
 			GameManager.writeText(NarrativeController.viewObjectNarrative(GrabController.grabingObjectName));
 		}
 	}

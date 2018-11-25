@@ -9,6 +9,7 @@ TagManager:
   - targetObj-1
   - eat
   - drink
+  - hand
   layers:
   - Default
   - TransparentFX

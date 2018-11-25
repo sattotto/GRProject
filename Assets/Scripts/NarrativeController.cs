@@ -20,7 +20,6 @@ public class NarrativeController : MonoBehaviour {
 
     public static string getEmotion() {
         EmotionValue = PlayerEmotions.getMaxEmotion();
-        Debug.Log("EmoNum : " + EmotionValue[0] + ", EmoValue : " + EmotionValue[1] + ", Emotion : " + (EmotionEnum)EmotionValue[0]);
         EmotionEnum Emo = (EmotionEnum)EmotionValue[0];
         return Emo.ToString();
     }
@@ -49,6 +48,10 @@ public class NarrativeController : MonoBehaviour {
     public static string viewObjectNarrative(string grabObj) {
         return getEmotionText() + grabObj + "観察した。";
     }
+
+    public static string getObjectNarrative(string grabObj) {
+        return getEmotionText() + grabObj + "を手に入れた。";
+    }
 }
 
 // enum定義のヘルパクラス
@@ -56,7 +59,7 @@ static class EmotionExt {
   // Gender に対する拡張メソッドの定義
   public static string DisplayEmotion(this NarrativeController.EmotionEnum emotion)
   {
-    string[] EmoNames = { "楽し気に", "恐る恐る", "嫌そうに", "悲しみながら", "怒りながら", "驚きながら", "", "興味なさげに" };
+    string[] EmoNames = { "楽しそうに", "恐る恐る", "嫌そうに", "悲しみながら", "怒りながら", "驚きながら", "", "興味なさげに" };
     return EmoNames[(int)emotion];
   }
 }
