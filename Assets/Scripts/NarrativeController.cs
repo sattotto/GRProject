@@ -13,7 +13,7 @@ public class NarrativeController : MonoBehaviour {
 
     public static string getEmotionText() {
         EmotionValue = PlayerEmotions.getMaxEmotion();
-        Debug.Log("EmoNum : " + EmotionValue[0] + ", EmoValue : " + EmotionValue[1] + ", Emotion : " + (EmotionEnum)EmotionValue[0]);
+        //Debug.Log("EmoNum : " + EmotionValue[0] + ", EmoValue : " + EmotionValue[1] + ", Emotion : " + (EmotionEnum)EmotionValue[0]);
         EmotionEnum Emo = (EmotionEnum)EmotionValue[0];
         return Emo.DisplayEmotion();
     }

@@ -20,12 +20,11 @@ public class VRCharactorMoveController : MonoBehaviour {
     // 食べる、飲むなどの処理
     void OnTriggerStay(Collider other) {
         if (GrabController.grabingObjectFlg && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
-            Debug.Log(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
+            //Debug.Log(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
             GameManager.writeText(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
             GrabController.grabingObjectName = "";
             GrabController.grabingObjectFlg = false;
             Destroy(other.gameObject);
-            Debug.Log("eating or drinking");
         }
     }
 

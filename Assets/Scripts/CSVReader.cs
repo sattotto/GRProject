@@ -20,7 +20,7 @@ public class CSVReader : MonoBehaviour {
         }
 		csvDatas.RemoveAt(0); // headerのコメント部分の削除
 		csvDatas.ForEach(items => {
-			Debug.Log(items.Length);
+			//Debug.Log(items.Length);
 		});
 		return csvDatas;
 	}
