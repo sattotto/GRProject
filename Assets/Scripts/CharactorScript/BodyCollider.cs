@@ -9,7 +9,7 @@ public class BodyCollider : MonoBehaviour {
 			Debug.Log(NarrativeController.getObjectNarrative(GrabController.grabingObjectName));
 			GameManager.writeText(NarrativeController.getObjectNarrative(GrabController.grabingObjectName));
 			Destroy(other.gameObject);
-			GameManager.setMyDictionary(GrabController.grabingObjectName);
+			GameManager.setMyGetDictionary(GrabController.grabingObjectName);
 			GrabController.grabingObjectFlg = false;
             GrabController.grabingObjectName = "";
 			

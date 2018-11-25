@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private MessageScript msgScript;
     private static string filePath;
+
+    private float duration;
+
     private static Dictionary<string, int> getList = new Dictionary<string, int>();
+    private static Dictionary<string, int> eatList = new Dictionary<string, int>();
 
     private string message = "あなたは，自分の仕事の疲れからいつの間にか寝てしまっていました。\n" +
 		"そしてあなたは誰もいない自分の職場で目を覚ましました。\n\n" +
@@ -39,6 +43,7 @@ public class GameManager : MonoBehaviour {
         filePath = Application.dataPath + @"\Resources\Narrative\narrative.txt"; // 生成した文章の保存パス
         ReadTXTFile("start");
         msgScript.SetMessagePanel(message);
+        duration = 0;
 	}
 
     // Update is called once per frame
@@ -46,6 +51,11 @@ public class GameManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             writeText(NarrativeController.getEmotionText());
+        }
+        duration += Time.deltaTime;
+        Debug.Log(duration);
+        if (duration > 240) {
+            ReadTXTFile("end1"); // end 1
         }
     }
 
@@ -56,14 +66,39 @@ public class GameManager : MonoBehaviour {
         textfile.Close();// ファイルを閉じる
     }
 
-    public static void setMyDictionary(string key) {
+    public static void setMyGetDictionary(string key) {
         if (!getList.ContainsKey(key)) {
             getList.Add(key, 1);
         } else {
             getList[key] += 1;
         }
+        int sum = 0;
         foreach(KeyValuePair<string, int> item in getList) {
+            sum += item.Value;
+            Debug.Log(item.Key + " : " + item.Value);
+        }
+
+        if (sum > 9) {
+            ReadTXTFile("end0"); // end 0
+        }
+    }
+
+    public static void setMyEatDictionary(string key) {
+        if (!getList.ContainsKey(key)) {
+            eatList.Add(key, 1);
+        } else {
+            eatList[key] += 1;
+        }
+        int sum = 0;
+        foreach(KeyValuePair<string, int> item in eatList) {
+            sum += item.Value;
+            if(item.Key == "毒キノコ" && item.Value > 4) {
+                ReadTXTFile("end3"); // end 3
+            }
             Debug.Log(item.Key + " : " + item.Value);  
+        }
+        if (sum > 9) {
+            ReadTXTFile("end2"); // end 2
         }
     }
 
