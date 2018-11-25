@@ -38,4 +38,17 @@ public class GameManager : MonoBehaviour {
             Debug.Log(item.Key + " : " + item.Value);  
         }
     }
+
+    public static void ReadTXTFile (string name) {
+		List<string[]> csvDatas = new List<string[]>();
+        TextAsset txtFile = Resources.Load(string.Format("Narrative/{0}", name)) as TextAsset; // Resouces/Narrative下の.txt読み込み
+        StringReader reader = new StringReader(txtFile.text);
+
+        while (reader.Peek() != -1)
+        {
+            string line = reader.ReadLine();
+            writeText(line);
+        }
+		
+	}
 }
