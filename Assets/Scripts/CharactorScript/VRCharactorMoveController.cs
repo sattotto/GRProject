@@ -20,7 +20,7 @@ public class VRCharactorMoveController : MonoBehaviour {
     // 食べる、飲むなどの処理
     void OnTriggerStay(Collider other) {
         if (GrabController.grabingObjectFlg && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
-            //Debug.Log(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
+            Debug.Log(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
             GameManager.writeText(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
             GrabController.grabingObjectName = "";
             GrabController.grabingObjectFlg = false;
@@ -42,8 +42,7 @@ public class VRCharactorMoveController : MonoBehaviour {
         controller.Move(moveDirection * Time.deltaTime);
     }
 
-    private void VisionController()
-    {
+    private void VisionController() {
         // 右手のアナログスティックの向きを取得
         Vector2 stickR = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
         this.transform.eulerAngles += new Vector3(stickR.y, stickR.x, 0);

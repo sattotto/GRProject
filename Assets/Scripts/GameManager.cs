@@ -6,6 +6,8 @@ using System.IO;
 public class GameManager : MonoBehaviour {
 
     private static string filePath;
+    private static Dictionary<string, int> getList = new Dictionary<string, int>();
+
 	// Use this for initialization
 	void Start () {
         filePath = Application.dataPath + @"\Resources\Narrative\narrative.txt"; // 生成した文章の保存パス
@@ -24,5 +26,16 @@ public class GameManager : MonoBehaviour {
         textfile.WriteLine(hoge);// ファイルに書き出したあと改行
         textfile.Flush();// StreamWriterのバッファに書き出し残しがないか確認
         textfile.Close();// ファイルを閉じる
+    }
+
+    public static void setMyDictionary(string key) {
+        if (!getList.ContainsKey(key)) {
+            getList.Add(key, 1);
+        } else {
+            getList[key] += 1;
+        }
+        foreach(KeyValuePair<string, int> item in getList) {
+            Debug.Log(item.Key + " : " + item.Value);  
+        }
     }
 }

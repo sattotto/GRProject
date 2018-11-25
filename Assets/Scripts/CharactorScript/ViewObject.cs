@@ -17,6 +17,7 @@ public class ViewObject : MonoBehaviour {
 		now = (int)Time.time;
 		if (!flg && (now-starttime) > 3 && other.gameObject.tag != "hand") {
 			flg = true;
+			Debug.Log(NarrativeController.viewObjectNarrative(GrabController.grabingObjectName));
 			GameManager.writeText(NarrativeController.viewObjectNarrative(GrabController.grabingObjectName));
 		}
 	}

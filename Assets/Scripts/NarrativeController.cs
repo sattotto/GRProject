@@ -57,9 +57,9 @@ public class NarrativeController : MonoBehaviour {
 // enum定義のヘルパクラス
 static class EmotionExt {
   // Gender に対する拡張メソッドの定義
-  public static string DisplayEmotion(this NarrativeController.EmotionEnum emotion)
-  {
-    string[] EmoNames = { "楽しそうに", "恐る恐る", "嫌そうに", "悲しみながら", "怒りながら", "驚きながら", "", "興味なさげに" };
-    return EmoNames[(int)emotion];
-  }
+    public static string DisplayEmotion(this NarrativeController.EmotionEnum emotion)
+    {
+        string[] EmoNames = { "楽しそうに", "恐る恐る", "嫌そうに", "悲しみながら", "怒りながら", "驚きながら", "", "興味なさげに" };
+        return EmoNames[(int)emotion];
+    }
 }

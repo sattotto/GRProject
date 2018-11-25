@@ -22,8 +22,9 @@ public class GrabController : MonoBehaviour {
             objectName = objectKnowledgeList[objectKnowledgeList.Count-1][1];
             GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", objectKnowledgeList[index][0])); // ここでprefabの名前を入れる
             Vector3 GrabPos = OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) ? rightHand.transform.position : leftHand.transform.position;
-            Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
-            //Debug.Log(NarrativeController.GrabNarrative(objectName, objectKnowledgeList[index][1])); // 生成文章
+            GameObject obj = Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
+            obj.name = objectKnowledgeList[index][1];
+            Debug.Log(NarrativeController.GrabNarrative(objectName, objectKnowledgeList[index][1])); // 生成文章
             GameManager.writeText(NarrativeController.GrabNarrative(objectName, objectKnowledgeList[index][1]));
             grabingObjectName = objectKnowledgeList[index][1];
             grabingObjectFlg = true;
@@ -31,10 +32,10 @@ public class GrabController : MonoBehaviour {
         }
         
         if(grabingObjectFlg && (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.2)) {
-                //Debug.Log(NarrativeController.putThrowNarrative(grabingObjectName));
-                GameManager.writeText(NarrativeController.putThrowNarrative(grabingObjectName));
-                grabingObjectFlg = false;
-                grabingObjectName = "";
+            Debug.Log(NarrativeController.putThrowNarrative(grabingObjectName));
+            GameManager.writeText(NarrativeController.putThrowNarrative(grabingObjectName));
+            grabingObjectFlg = false;
+            grabingObjectName = "";
         }
     }
 

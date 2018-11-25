@@ -15,6 +15,8 @@ public class PlayerEmotions : ImageResultsListener
     public float currentAnger;
     public float currentSurprise;
     public float currentContempt;
+    
+    public static bool onFace = false;
 
     public static float[,] currentEmotionArray = new float[7, 30]; // 0埋めで初期化
 
@@ -25,11 +27,13 @@ public class PlayerEmotions : ImageResultsListener
     public override void onFaceFound(float timestamp, int faceId)
     {
         Debug.Log("Found the face");
+        onFace = true;
     }
     
     public override void onFaceLost(float timestamp, int faceId)
     {
         Debug.Log("Lost the face");
+        onFace = false;
     }
 
     public override void onImageResults(Dictionary<int, Face> faces)

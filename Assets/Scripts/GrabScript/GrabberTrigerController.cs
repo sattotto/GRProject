@@ -22,6 +22,11 @@ public class GrabberTrigerController : MonoBehaviour {
         if (other.gameObject.tag == "targetObj-1") {
             GrabController.objectName = other.gameObject.name;
         }
+        // if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.7 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.7) {
+        //     Debug.Log("hoge");
+        //     GrabController.grabingObjectName = other.gameObject.name;
+        //     GrabController.grabingObjectFlg = true;
+        // }
     }
 
     void OnTriggerExit(Collider other) {
