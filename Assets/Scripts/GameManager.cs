@@ -5,12 +5,40 @@ using System.IO;
 
 public class GameManager : MonoBehaviour {
 
+    [SerializeField]
+    private MessageScript msgScript;
     private static string filePath;
     private static Dictionary<string, int> getList = new Dictionary<string, int>();
+
+    private string message = "あなたは，自分の仕事の疲れからいつの間にか寝てしまっていました。\n" +
+		"そしてあなたは誰もいない自分の職場で目を覚ましました。\n\n" +
+		"メッセージを次に飛ばすには手元のコントローラーの親指当たりのボタンを押してね！\n" +
+
+        "周りを見渡すには右のコントローラーのスティックを使うよ！\n" +
+        "周りを見渡してプリンターを見つけよう！\n\n" +
+        "プリンターを見つけたらまたボタンを押してね！\n" +
+
+        "次はプリンターのところまで移動してみよう。\n" +
+        "移動には、左のコントローラーのスティックを使うよ！\n\n" +
+        "プリンターの前まで移動したらボタンを押してね。\n" +
+
+        "プリンターからは黒い円の書かれた紙が出ている。\n" +
+        "その紙をつかんでみよう！画面上に出てる手のアイコンを紙に合わせてどちらかのコントローラーを握りこもう！\n" +
+        "握りこんだままで手を動かしたりしてみよう\n"　+
+        "ボタンを押して次の画面に進んでね。\n" +
+        
+        "この黒い円は机とかの中から物を取り出すことができるよ！\n" +
+        "この机に対して、紙を当てて中から物を取り出す動作をしてみよう！\n" +
+        "一度どのような動作か近くのお兄さんに聞いて実践をしてみよう。\n\n" +
+        
+        "これで操作説明は終了です！\n" +
+        "この黒い円を使っていろいろと行動をしてみて自分の物語を作ろう！";
 
 	// Use this for initialization
 	void Start () {
         filePath = Application.dataPath + @"\Resources\Narrative\narrative.txt"; // 生成した文章の保存パス
+        ReadTXTFile("start");
+        msgScript.SetMessagePanel(message);
 	}
 
     // Update is called once per frame
