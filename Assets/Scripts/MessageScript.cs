@@ -37,7 +37,6 @@ public class MessageScript : MonoBehaviour {
         clickIcon.enabled = false;
         messageText = GetComponentInChildren<Text>();
         messageText.text = "";
-		transform.Find("Panel").gameObject.SetActive(false);
     }
     void Update() {
         //　メッセージが終わっていない、または設定されている

@@ -22,6 +22,7 @@ public class VRCharactorMoveController : MonoBehaviour {
         if (GrabController.grabingObjectFlg && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
             Debug.Log(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
             GameManager.writeText(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
+            GameManager.setMyEatDictionary(GrabController.grabingObjectName);
             GrabController.grabingObjectName = "";
             GrabController.grabingObjectFlg = false;
             Destroy(other.gameObject);
