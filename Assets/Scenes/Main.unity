@@ -3327,7 +3327,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   msgScript: {fileID: 114721302}
-  hoge: {fileID: 199200032}
 --- !u!114 &845713898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3645,19 +3644,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4882723384304174, guid: 5718536b6e868bb4c80ce5579258e000, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.09
+      value: 4.896
       objectReference: {fileID: 0}
     - target: {fileID: 4882723384304174, guid: 5718536b6e868bb4c80ce5579258e000, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.658
+      value: 0.696
       objectReference: {fileID: 0}
     - target: {fileID: 4882723384304174, guid: 5718536b6e868bb4c80ce5579258e000, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.711
+      value: 4.964
       objectReference: {fileID: 0}
     - target: {fileID: 4882723384304174, guid: 5718536b6e868bb4c80ce5579258e000, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.72429216
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4882723384304174, guid: 5718536b6e868bb4c80ce5579258e000, type: 2}
       propertyPath: m_LocalRotation.y
@@ -3669,7 +3668,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4882723384304174, guid: 5718536b6e868bb4c80ce5579258e000, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.6894933
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4882723384304174, guid: 5718536b6e868bb4c80ce5579258e000, type: 2}
       propertyPath: m_RootOrder
@@ -3677,12 +3676,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4882723384304174, guid: 5718536b6e868bb4c80ce5579258e000, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -92.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 54727028329392316, guid: 5718536b6e868bb4c80ce5579258e000,
         type: 2}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5718536b6e868bb4c80ce5579258e000, type: 2}
@@ -5156,6 +5155,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &1262720137
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1262720134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.104762, y: 0.45510966, z: 3.7373955}
+  m_Center: {x: 0.18510439, y: 0.04849255, z: 0.24934296}
 --- !u!1 &1286442888
 GameObject:
   m_ObjectHideFlags: 0

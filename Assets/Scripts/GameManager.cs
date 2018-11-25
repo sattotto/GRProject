@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour {
         "この黒い円は机とかの中から物を取り出すことができるよ！\n" +
         "この机に対して、紙を当てて中から物を取り出す動作をしてみよう！\n" +
         "一度どのような動作か近くのお兄さんに聞いて実践をしてみよう。\n\n" +
+
+        "取り出した物体に対して、投げる/置く、食べる/飲む、手に入れるなどの動作をすることができるよ！\n" +
+        "投げる/置く ... コントローラーを振りながら握る力を弱める(中指のボタンを離す)。\n" +
+        "食べる/飲む ... 食べれそうなものを自分の顔のほうへもっていくと食べたりすることができる。\n" +
+        "手に入れる　... 自分の腰の後ろに物体を回すようにするとその動作ができる。\n" +
         
         "これで操作説明は終了です！\n" +
         "この黒い円を使っていろいろと行動をしてみて自分の物語を作ろう！";
@@ -57,7 +62,7 @@ public class GameManager : MonoBehaviour {
             writeText(NarrativeController.getEmotionText());
         }
         duration += Time.deltaTime;
-        Debug.Log(duration);
+        
         if (duration > 240 && !endFlg) {
             FadeController.isFadeOut = true;
             endFlg = true;
