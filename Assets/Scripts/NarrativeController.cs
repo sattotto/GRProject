@@ -11,31 +11,31 @@ public class NarrativeController : MonoBehaviour {
 
     static int[] EmotionValue = new int[2];
 
-    public static string getEmotionText() {
-        EmotionValue = PlayerEmotions.getMaxEmotion();
+    public string getEmotionText() {        
+        EmotionValue = GameObject.Find("VRCameraController").GetComponent<PlayerEmotions>().getMaxEmotion();
         //Debug.Log("EmoNum : " + EmotionValue[0] + ", EmoValue : " + EmotionValue[1] + ", Emotion : " + (EmotionEnum)EmotionValue[0]);
         EmotionEnum Emo = (EmotionEnum)EmotionValue[0];
         return Emo.DisplayEmotion();
     }
 
-    public static string getEmotion() {
-        EmotionValue = PlayerEmotions.getMaxEmotion();
+    public string getEmotion() {
+        EmotionValue = GameObject.Find("VRCameraController").GetComponent<PlayerEmotions>().getMaxEmotion();
         EmotionEnum Emo = (EmotionEnum)EmotionValue[0];
         return Emo.ToString();
     }
 
-    public static string GrabNarrative(string targetObj, string grabObj) {
+    public string GrabNarrative(string targetObj, string grabObj) {
         return getEmotionText() + targetObj + "から、" + grabObj + "を取り出した。";
     }
 
-    public static string putThrowNarrative(string grabObj){
+    public string putThrowNarrative(string grabObj){
         if(OVRInput.GetLocalControllerVelocity (OVRInput.Controller.LTouch).magnitude > 0.7 || OVRInput.GetLocalControllerVelocity (OVRInput.Controller.RTouch).magnitude > 0.7) {
             return getEmotionText() + grabObj + "を投げた。";
         }
         return getEmotionText() + grabObj + "を置いた。";
     }
 
-    public static string eatDrinkNarrative(string grabObj, string grabObjTag) {
+    public string eatDrinkNarrative(string grabObj, string grabObjTag) {
         if (grabObjTag == "eat") {
             return getEmotionText() + grabObj + "を食べた。";
         }
@@ -45,11 +45,11 @@ public class NarrativeController : MonoBehaviour {
         return "";
     }
 
-    public static string viewObjectNarrative(string grabObj) {
+    public string viewObjectNarrative(string grabObj) {
         return getEmotionText() + grabObj + "観察した。";
     }
 
-    public static string getObjectNarrative(string grabObj) {
+    public string getObjectNarrative(string grabObj) {
         return getEmotionText() + grabObj + "を手に入れた。";
     }
 }

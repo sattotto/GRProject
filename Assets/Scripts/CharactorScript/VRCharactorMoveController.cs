@@ -12,6 +12,11 @@ public class VRCharactorMoveController : MonoBehaviour {
     private const float ANGLE_LIMIT_UP = 60f;
     private const float ANGLE_LIMIT_DOWN = -60f;
 
+    private TextWriter myTextWriter;
+
+    void Start () {
+        myTextWriter = new TextWriter();
+    }  
     void Update() {
         MoveController();
         VisionController();
@@ -20,9 +25,9 @@ public class VRCharactorMoveController : MonoBehaviour {
     // 食べる、飲むなどの処理
     void OnTriggerStay(Collider other) {
         if (GrabController.grabingObjectFlg && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
-            Debug.Log(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
-            GameManager.writeText(NarrativeController.eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
-            GameManager.setMyEatDictionary(GrabController.grabingObjectName);
+            myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
+            int count = PlayerPrefs.GetInt(GrabController.grabingObjectName+"_eat",0);
+			PlayerPrefs.SetInt(GrabController.grabingObjectName+"_eat",count);
             GrabController.grabingObjectName = "";
             GrabController.grabingObjectFlg = false;
             Destroy(other.gameObject);

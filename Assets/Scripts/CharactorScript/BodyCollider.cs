@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class BodyCollider : MonoBehaviour {
 
+	private TextWriter myTextWriter;
+
+	void Start() {
+		myTextWriter = new TextWriter();
+		
+	}
 	void OnTriggerEnter(Collider other) {
 		if (GrabController.grabingObjectFlg && (other.gameObject.tag == "grabObj" || other.gameObject.tag == "drink" || other.gameObject.tag == "eat")) {
-			Debug.Log(NarrativeController.getObjectNarrative(GrabController.grabingObjectName));
-			GameManager.writeText(NarrativeController.getObjectNarrative(GrabController.grabingObjectName));
+			myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().getObjectNarrative(GrabController.grabingObjectName));
 			Destroy(other.gameObject);
-			GameManager.setMyGetDictionary(GrabController.grabingObjectName);
+			int count = PlayerPrefs.GetInt(GrabController.grabingObjectName+"_get",0);
+			PlayerPrefs.SetInt(GrabController.grabingObjectName+"_get",count);
 			GrabController.grabingObjectFlg = false;
             GrabController.grabingObjectName = "";
 			

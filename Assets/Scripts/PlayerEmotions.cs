@@ -6,8 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerEmotions : ImageResultsListener
-{
+public class PlayerEmotions : ImageResultsListener {
     public float currentJoy;
     public float currentFear;
     public float currentDisgust;
@@ -72,7 +71,7 @@ public class PlayerEmotions : ImageResultsListener
     }
 
     /// <summary>呼ばれたらどの感情が一番大きく、その数値はいくらだったかを返却します。</summary>
-    public static int[] getMaxEmotion() {
+    public int[] getMaxEmotion() {
         int[] returnEmo = new int[2];
         for(int EmoNum = 0; EmoNum < currentEmotionArray.GetLength(0); EmoNum++)
         {

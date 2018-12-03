@@ -4,11 +4,8 @@ using UnityEngine;
 using System.IO;
 
 public class CSVReader : MonoBehaviour {
-    void Start() {
-		// Debug.Log(ReadCSVFile("ColaMachine"));
-    }
 
-	public static List<string[]> ReadCSVFile (string name) {
+	public List<string[]> ReadCSVFile (string name) {
 		List<string[]> csvDatas = new List<string[]>();
         TextAsset csvFile = Resources.Load(string.Format("CSV/{0}", name)) as TextAsset; // Resouces/CSV下のCSV読み込み
         StringReader reader = new StringReader(csvFile.text);
