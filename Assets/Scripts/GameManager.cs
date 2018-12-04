@@ -113,4 +113,8 @@ public class GameManager : MonoBehaviour {
     public static void gameEnd(string prefsKey) {
         PlayerPrefs.GetInt(prefsKey,0);
     }
+
+    public void messageShow(string message){
+        msgScript.SetMessagePanel(message);
+    }
 }
