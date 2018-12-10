@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerEmotions : ImageResultsListener {
+
     public float currentJoy;
     public float currentFear;
     public float currentDisgust;
@@ -17,6 +18,8 @@ public class PlayerEmotions : ImageResultsListener {
     
     public static bool onFace = false;
 
+    public GameObject OnFaceGameObject;
+
     public static float[,] currentEmotionArray = new float[7, 30]; // 0埋めで初期化
 
     private static int rateCount = 0;
@@ -26,13 +29,18 @@ public class PlayerEmotions : ImageResultsListener {
     public override void onFaceFound(float timestamp, int faceId)
     {
         Debug.Log("Found the face");
-        onFace = true;
+        if (OnFaceGameObject != null) {
+            onFace = true;
+            OnFaceGameObject.SetActive(!onFace);
+        }
     }
     
     public override void onFaceLost(float timestamp, int faceId)
     {
-        Debug.Log("Lost the face");
-        onFace = false;
+        if (OnFaceGameObject != null) {
+            onFace = false;
+            OnFaceGameObject.SetActive(!onFace);
+        }
     }
 
     public override void onImageResults(Dictionary<int, Face> faces)

@@ -32,6 +32,8 @@ public class MessageScript : MonoBehaviour {
     private bool isOneMessage = false;
     //　メッセージをすべて表示したかどうか
     private bool isEndMessage = false;
+    private bool skipFlg = false;
+
     void Start() {
         clickIcon = transform.Find("Panel/Image").GetComponent<Image>();
         clickIcon.enabled = false;
@@ -58,6 +60,7 @@ public class MessageScript : MonoBehaviour {
                 //　メッセージを全部表示、または行数が最大数表示された
                 if (nowTextNum >= message.Length || textLength >= maxTextLength || nowLine >= maxLine) {
                     isOneMessage = true;
+                    Invoke("messageSkip", 1f);
                 }
             }
             elapsedTime += Time.deltaTime;
@@ -90,7 +93,7 @@ public class MessageScript : MonoBehaviour {
                 elapsedTime = 0f;
             }
             //　マウスクリックされたら次の文字表示処理
-            if (OVRInput.GetDown(OVRInput.RawButton.A) || OVRInput.GetDown(OVRInput.RawButton.B) || OVRInput.GetDown(OVRInput.RawButton.X) || OVRInput.GetDown(OVRInput.RawButton.Y)) {
+            if (OVRInput.GetDown(OVRInput.RawButton.A) || OVRInput.GetDown(OVRInput.RawButton.B) || OVRInput.GetDown(OVRInput.RawButton.X) || OVRInput.GetDown(OVRInput.RawButton.Y) || skipFlg) {
                 Debug.Log(messageText.text.Length);
                 messageText.text = "";
                 nowLine = 0;
@@ -98,6 +101,7 @@ public class MessageScript : MonoBehaviour {
                 elapsedTime = 0f;
                 textLength = 0;
                 isOneMessage = false;
+                skipFlg = false;
                 //　メッセージが全部表示されていたらゲームオブジェクト自体の削除
                 if (nowTextNum >= message.Length) {
                     nowTextNum = 0;
@@ -116,5 +120,9 @@ public class MessageScript : MonoBehaviour {
         SetMessage(message);
         transform.GetChild(0).gameObject.SetActive(true);
         isEndMessage = false;
+    }
+
+    private void messageSkip(){
+        skipFlg = true;
     }
 }

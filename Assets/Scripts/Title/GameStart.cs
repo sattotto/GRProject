@@ -15,7 +15,7 @@ public class GameStart : MonoBehaviour {
         Debug.Log("hoge");
         if (OVRInput.GetDown(OVRInput.RawButton.A)){
             Debug.Log("ボタンを押した");
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("AvatarWithGrab");
         }
     }
 }
