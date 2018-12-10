@@ -13,11 +13,12 @@ public class ViewObject : MonoBehaviour {
 		flg = false;
 	}
 
-	void OnTriggerStay(Collider other) {
-		now = (int)Time.time;
-		if (!flg && (now-starttime) > 3 && other.gameObject.tag != "hand") {
-			flg = true;
-			GameManager.writeText(NarrativeController.viewObjectNarrative(GrabController.grabingObjectName));
-		}
-	}
+	// void OnTriggerStay(Collider other) {
+	// 	now = (int)Time.time;
+	// 	if (!flg && (now-starttime) > 3 && other.gameObject.tag != "hand") {
+	// 		flg = true;
+	// 		Debug.Log(NarrativeController.viewObjectNarrative(GrabController.grabingObjectName));
+	// 		GameManager.writeText(NarrativeController.viewObjectNarrative(GrabController.grabingObjectName));
+	// 	}
+	// }
 }

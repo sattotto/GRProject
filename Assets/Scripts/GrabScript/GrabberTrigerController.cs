@@ -22,6 +22,11 @@ public class GrabberTrigerController : MonoBehaviour {
         if (other.gameObject.tag == "targetObj-1") {
             GrabController.objectName = other.gameObject.name;
         }
+        // if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.7 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.7) {
+        //     Debug.Log("hoge");
+        //     GrabController.grabingObjectName = other.gameObject.name;
+        //     GrabController.grabingObjectFlg = true;
+        // }
     }
 
     void OnTriggerExit(Collider other) {
@@ -36,6 +41,5 @@ public class GrabberTrigerController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 		if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) && OVRInput.GetDown(OVRInput.RawButton.LHandTrigger)) { GrabController.objItemGrabFlg = false; } else {  }
-        Debug.Log("itemGrabFlg = " + GrabController.itemGrabFlg + " : objItemGrabFlg = " + GrabController.objItemGrabFlg);
     }
 }

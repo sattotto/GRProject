@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerEmotions : ImageResultsListener
-{
+public class PlayerEmotions : ImageResultsListener {
+
     public float currentJoy;
     public float currentFear;
     public float currentDisgust;
@@ -15,6 +15,10 @@ public class PlayerEmotions : ImageResultsListener
     public float currentAnger;
     public float currentSurprise;
     public float currentContempt;
+    
+    public static bool onFace = false;
+
+    public GameObject OnFaceGameObject;
 
     public static float[,] currentEmotionArray = new float[7, 30]; // 0埋めで初期化
 
@@ -25,11 +29,18 @@ public class PlayerEmotions : ImageResultsListener
     public override void onFaceFound(float timestamp, int faceId)
     {
         Debug.Log("Found the face");
+        if (OnFaceGameObject != null) {
+            onFace = true;
+            OnFaceGameObject.SetActive(!onFace);
+        }
     }
     
     public override void onFaceLost(float timestamp, int faceId)
     {
-        Debug.Log("Lost the face");
+        if (OnFaceGameObject != null) {
+            onFace = false;
+            OnFaceGameObject.SetActive(!onFace);
+        }
     }
 
     public override void onImageResults(Dictionary<int, Face> faces)
@@ -68,7 +79,7 @@ public class PlayerEmotions : ImageResultsListener
     }
 
     /// <summary>呼ばれたらどの感情が一番大きく、その数値はいくらだったかを返却します。</summary>
-    public static int[] getMaxEmotion() {
+    public int[] getMaxEmotion() {
         int[] returnEmo = new int[2];
         for(int EmoNum = 0; EmoNum < currentEmotionArray.GetLength(0); EmoNum++)
         {

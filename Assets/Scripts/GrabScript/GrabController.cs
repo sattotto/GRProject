@@ -15,6 +15,15 @@ public class GrabController : MonoBehaviour {
     public static string grabingObjectName = "";
     private List<string[]> objectKnowledgeList;
     private int index = 0;
+    private CSVReader myCSVReader;
+    private TextWriter myTextWriter;
+    private NarrativeController myNarrativeGenerator;
+
+    void Start() {
+        myCSVReader = new CSVReader();
+        myTextWriter = new TextWriter();
+        myNarrativeGenerator = new NarrativeController();
+    }
 
 	void Update () {
         if(itemGrabFlg == true && objItemGrabFlg == true && (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) || OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))) {
@@ -22,29 +31,28 @@ public class GrabController : MonoBehaviour {
             objectName = objectKnowledgeList[objectKnowledgeList.Count-1][1];
             GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", objectKnowledgeList[index][0])); // ここでprefabの名前を入れる
             Vector3 GrabPos = OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) ? rightHand.transform.position : leftHand.transform.position;
-            Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
-            Debug.Log(NarrativeController.GrabNarrative(objectName, objectKnowledgeList[index][1])); // 生成文章
-            GameManager.writeText(NarrativeController.GrabNarrative(objectName, objectKnowledgeList[index][1]));
+            GameObject obj = Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
+            obj.name = objectKnowledgeList[index][1];
+            myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().GrabNarrative(objectName, objectKnowledgeList[index][1]));
             grabingObjectName = objectKnowledgeList[index][1];
             grabingObjectFlg = true;
             resetParam();
         }
         
         if(grabingObjectFlg && (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.2)) {
-                Debug.Log(NarrativeController.putThrowNarrative(grabingObjectName));
-                GameManager.writeText(NarrativeController.putThrowNarrative(grabingObjectName));
-                grabingObjectFlg = false;
-                grabingObjectName = "";
+            myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().putThrowNarrative(grabingObjectName));
+            grabingObjectFlg = false;
+            grabingObjectName = "";
         }
     }
 
     void getKnowledgeList(string objName) {
-        objectKnowledgeList = CSVReader.ReadCSVFile(objName);
+        objectKnowledgeList = myCSVReader.ReadCSVFile(objName);
         getListIndex();
     }
 
     void getListIndex(){
-        string EmoString = NarrativeController.getEmotion();
+        string EmoString = GameObject.Find("GameManager").GetComponent<NarrativeController>().getEmotion();
         for(int i = 0;i < objectKnowledgeList.Count;i++) {
             var item = objectKnowledgeList[i];
             if (item[2].Contains(EmoString)) {
