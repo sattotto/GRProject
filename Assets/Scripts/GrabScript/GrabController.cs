@@ -18,15 +18,17 @@ public class GrabController : MonoBehaviour {
     private CSVReader myCSVReader;
     private TextWriter myTextWriter;
     private NarrativeController myNarrativeGenerator;
+    private StateMachine myStateMachine;
 
     void Start() {
         myCSVReader = new CSVReader();
         myTextWriter = new TextWriter();
         myNarrativeGenerator = new NarrativeController();
+        myStateMachine = GameObject.Find("GameManager").GetComponent<StateMachine>();
     }
 
 	void Update () {
-        if(itemGrabFlg == true && objItemGrabFlg == true && (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) || OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))) {
+        if(myStateMachine.myCharacterState == StateMachine.CharacterState.ObjectGrab) {
             getKnowledgeList(objectName);
             objectName = objectKnowledgeList[objectKnowledgeList.Count-1][1];
             GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", objectKnowledgeList[index][0])); // ここでprefabの名前を入れる
