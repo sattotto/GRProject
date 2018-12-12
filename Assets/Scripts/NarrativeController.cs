@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class NarrativeController : MonoBehaviour {
 
+    private GameManager myGameManager;
+
+    void Start() {
+        myGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     public enum EmotionEnum
     {
         Joy, Fear, Disgust, Sadness, Anger, Surprise, Contempt, None
@@ -61,7 +66,9 @@ public class NarrativeController : MonoBehaviour {
     }
 
     private void sendMessageScript(string message) {
-        GetComponent<GameManager>().messageShow(message);
+        Debug.Log(message);
+        Debug.Log(myGameManager == null);
+        myGameManager.messageShow(message);
     }
 }
 

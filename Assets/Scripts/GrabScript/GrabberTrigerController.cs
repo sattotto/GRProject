@@ -4,24 +4,33 @@ using UnityEngine;
 
 public class GrabberTrigerController : MonoBehaviour {
 
+    private GrabController myGrabController;
+
 	// Use this for initialization
 	void Start () {
-		
+		myGrabController = GameObject.Find("GameManager").GetComponent<GrabController>();
 	}
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "item0") {
-            GrabController.itemGrabFlg = true;
+            if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.7) {
+                myGrabController.rightHandObject = other.gameObject;
+            }
+            if (OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.7) {
+                myGrabController.leftHandObject = other.gameObject;
+            }
         }
         if (other.gameObject.tag == "targetObj-1") {
-            GrabController.objItemGrabFlg = true;
+            myGrabController.objectName = other.gameObject.name;
         }
     }
 
     void OnTriggerStay(Collider other) {
-        if (other.gameObject.tag == "targetObj-1") {
-            GrabController.objectName = other.gameObject.name;
-        }
+        // 冗長？？？
+        // if (other.gameObject.tag == "targetObj-1") {
+        //     myGrabController.objectName = other.gameObject.name;
+        // }
+
         // if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.7 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.7) {
         //     Debug.Log("hoge");
         //     GrabController.grabingObjectName = other.gameObject.name;
@@ -30,16 +39,8 @@ public class GrabberTrigerController : MonoBehaviour {
     }
 
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "item0" && !(OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.7 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.7)) {
-            GrabController.itemGrabFlg = false;
-        }
 		if (other.gameObject.tag == "targetObj-1") {
-            GrabController.objItemGrabFlg = false;
+            myGrabController.objectName = "";
         }
-    }
-
-    // Update is called once per frame
-    void Update () {
-		if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) && OVRInput.GetDown(OVRInput.RawButton.LHandTrigger)) { GrabController.objItemGrabFlg = false; } else {  }
     }
 }

@@ -8,6 +8,7 @@ public class CSVReader : MonoBehaviour {
 	public List<string[]> ReadCSVFile (string name) {
 		List<string[]> csvDatas = new List<string[]>();
         TextAsset csvFile = Resources.Load(string.Format("CSV/{0}", name)) as TextAsset; // Resouces/CSV下のCSV読み込み
+		Debug.Log(name);
         StringReader reader = new StringReader(csvFile.text);
 
         while (reader.Peek() != -1)
