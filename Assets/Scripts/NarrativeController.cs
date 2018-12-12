@@ -67,7 +67,6 @@ public class NarrativeController : MonoBehaviour {
 
     private void sendMessageScript(string message) {
         Debug.Log(message);
-        Debug.Log(myGameManager == null);
         myGameManager.messageShow(message);
     }
 }

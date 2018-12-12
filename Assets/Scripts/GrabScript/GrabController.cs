@@ -7,9 +7,10 @@ public class GrabController : MonoBehaviour {
     public GameObject rightHand;
     public GameObject leftHand;
 
-
     public GameObject rightHandObject;
     public GameObject leftHandObject;
+
+    private string grabHand = "";
 
     public string objectName = "";
     private List<string[]> objectKnowledgeList;
@@ -23,16 +24,22 @@ public class GrabController : MonoBehaviour {
     }
 
 	void Update () {
-        if(ItemGrab()) {
+        if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2 && OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.2) {
+            Debug.Log("not grab now");
+            rightHandObject = null;
+            leftHandObject = null;
+        }
+        if(ItemGrab() && objectName != "") {
             getKnowledgeList(objectName);
             GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", objectKnowledgeList[index][0])); // ここでprefabの名前を入れる
             Vector3 GrabPos = OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) ? rightHand.transform.position : leftHand.transform.position;
             GameObject obj = Instantiate(prefab, GrabPos + new Vector3(0, 0.02f, 0), Quaternion.identity);
             obj.name = objectKnowledgeList[index][1];
+            if (grabHand == "Right") { rightHandObject = obj; }
+            if (grabHand == "Left") { leftHandObject = obj; }
             myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().GrabNarrative(objectName, objectKnowledgeList[index][1]));
             resetParam();
         }
-
         if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2 && rightHandObjectGrabing() ) {
             myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().putThrowNarrative(rightHandObject.name));
             rightHandObject = null;
@@ -60,16 +67,19 @@ public class GrabController : MonoBehaviour {
 
     void resetParam() {
         index = 0;
+        grabHand = "";
     }
 
     public bool ItemGrab() {
         if (rightHandObject != null && leftHandObject == null) {
             if (OVRInput.GetDown(OVRInput.RawButton.LHandTrigger) && rightHandObject.tag == "item0") {
+                grabHand = "Left";
                 return true;
             }
         }
         if (leftHandObject != null && rightHandObject == null) {
             if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger) && leftHandObject.tag == "item0") {
+                grabHand = "Right";
                 return true;
             }
         }
