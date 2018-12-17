@@ -12,30 +12,31 @@ public class GrabberTrigerController : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider other) {
+        Debug.Log(other.gameObject.name);
+        myGrabController.objectName = "";
         if (other.gameObject.tag == "item0") {
-            if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.7) {
+            if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.5) {
                 myGrabController.rightHandObject = other.gameObject;
             }
-            if (OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.7) {
+            if (OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.5) {
                 myGrabController.leftHandObject = other.gameObject;
             }
         }
         if (other.gameObject.tag == "targetObj-1") {
             myGrabController.objectName = other.gameObject.name;
         }
+
     }
 
     void OnTriggerStay(Collider other) {
-        // 冗長？？？
-        // if (other.gameObject.tag == "targetObj-1") {
-        //     myGrabController.objectName = other.gameObject.name;
-        // }
-
-        // if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.7 || OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.7) {
-        //     Debug.Log("hoge");
-        //     GrabController.grabingObjectName = other.gameObject.name;
-        //     GrabController.grabingObjectFlg = true;
-        // }
+        if (other.gameObject.tag != "Untagged" || other.gameObject.tag != "Player") {
+            if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > 0.2 && myGrabController.rightHandObject == null) {
+                myGrabController.rightHandObject = other.gameObject;
+            }
+            if (OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > 0.2 && myGrabController.leftHandObject == null) {
+                myGrabController.leftHandObject = other.gameObject;
+            }
+        }
     }
 
     void OnTriggerExit(Collider other) {

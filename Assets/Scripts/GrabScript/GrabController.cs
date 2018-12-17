@@ -24,11 +24,6 @@ public class GrabController : MonoBehaviour {
     }
 
 	void Update () {
-        if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2 && OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.2) {
-            Debug.Log("not grab now");
-            rightHandObject = null;
-            leftHandObject = null;
-        }
         if(ItemGrab() && objectName != "") {
             getKnowledgeList(objectName);
             GameObject prefab = (GameObject)Resources.Load(string.Format("Prefabs/{0}", objectKnowledgeList[index][0])); // ここでprefabの名前を入れる
@@ -48,6 +43,8 @@ public class GrabController : MonoBehaviour {
             myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().putThrowNarrative(leftHandObject.name));
             leftHandObject = null;
         }
+        if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2) { rightHandObject = null; }
+        if (OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.2) { leftHandObject = null; }
     }
 
     void getKnowledgeList(string objName) {

@@ -28,15 +28,15 @@ public class VRCharactorMoveController : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (myGrabController.rightHandObjectGrabing() && myGrabController.rightHandObject == other.gameObject && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
             myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(other.gameObject.name, other.gameObject.tag));
-            int count = PlayerPrefs.GetInt(other.gameObject.name+"_eat",0) + 1;
-			PlayerPrefs.SetInt(other.gameObject.name+"_eat",count);
+            int count = PlayerPrefs.GetInt("eat",0) + 1;
+			PlayerPrefs.SetInt("eat",count);
             myGrabController.rightHandObject = null;
 			Destroy(other.gameObject); // myGrabController.rightHandObject
         }
         if (myGrabController.leftHandObjectGrabing() && myGrabController.leftHandObject == other.gameObject && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
             myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(other.gameObject.name, other.gameObject.tag));
-            int count = PlayerPrefs.GetInt(other.gameObject.name+"_eat",0) + 1;
-			PlayerPrefs.SetInt(other.gameObject.name+"_eat",count);
+            int count = PlayerPrefs.GetInt("eat",0) + 1;
+			PlayerPrefs.SetInt("eat",count);
             myGrabController.leftHandObject = null;
 			Destroy(other.gameObject); // myGrabController.rightHandObject
         }

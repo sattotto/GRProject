@@ -110,8 +110,12 @@ public class GameManager : MonoBehaviour {
     //     }
     // }
 
-    public static void gameEnd(string prefsKey) {
-        PlayerPrefs.GetInt(prefsKey,0);
+    public void gameEnd(string prefsKey) {
+        if (PlayerPrefs.GetInt(prefsKey,0) > 3) {
+            if (prefsKey == "") {
+
+            }
+        }
     }
 
     public void messageShow(string message){
