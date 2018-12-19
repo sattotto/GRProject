@@ -30,6 +30,7 @@ public class VRCharactorMoveController : MonoBehaviour {
             myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(other.gameObject.name, other.gameObject.tag));
             int count = PlayerPrefs.GetInt("eat",0) + 1;
 			PlayerPrefs.SetInt("eat",count);
+            GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("eat");
             myGrabController.rightHandObject = null;
 			Destroy(other.gameObject); // myGrabController.rightHandObject
         }
@@ -37,6 +38,7 @@ public class VRCharactorMoveController : MonoBehaviour {
             myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(other.gameObject.name, other.gameObject.tag));
             int count = PlayerPrefs.GetInt("eat",0) + 1;
 			PlayerPrefs.SetInt("eat",count);
+            GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("eat");
             myGrabController.leftHandObject = null;
 			Destroy(other.gameObject); // myGrabController.rightHandObject
         }

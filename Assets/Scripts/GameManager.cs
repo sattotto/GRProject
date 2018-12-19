@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour {
             endFlg = true;
             myTextWriter.writeEnding("end1"); // end 1
         }
+
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            Debug.Log(PlayerPrefs.GetInt("get"));
+            Debug.Log(PlayerPrefs.GetInt("eat"));
+            PlayerPrefs.DeleteAll();
+        }
     }
 
     // public static void setMyGetDictionary(string key) {
@@ -112,8 +118,15 @@ public class GameManager : MonoBehaviour {
 
     public void gameEnd(string prefsKey) {
         if (PlayerPrefs.GetInt(prefsKey,0) > 3) {
-            if (prefsKey == "") {
-
+            if (prefsKey == "eat") {
+                FadeController.isFadeOut = true;
+                endFlg = true;
+                myTextWriter.writeEnding("end0"); // end 0
+            }
+            if (prefsKey == "get") {
+                FadeController.isFadeOut = true;
+                endFlg = true;
+                myTextWriter.writeEnding("end2"); // end 2
             }
         }
     }

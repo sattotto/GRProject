@@ -85,7 +85,7 @@ public class GrabController : MonoBehaviour {
 
     public bool rightHandObjectGrabing() {
         if (rightHandObject != null) {
-            if (rightHandObject.tag != "item0") {
+            if (rightHandObject.tag != "item0" && rightHandObject.tag != "targetObj-1" && rightHandObject.tag != "Player") {
                 return true;
             }
         }
@@ -93,7 +93,7 @@ public class GrabController : MonoBehaviour {
     }
     public bool leftHandObjectGrabing() {
         if (leftHandObject != null) {
-            if (leftHandObject.tag != "item0") {
+            if (leftHandObject.tag != "item0" && leftHandObject.tag != "targetObj-1" && leftHandObject.tag != "Player") {
                 return true;
             }
         }

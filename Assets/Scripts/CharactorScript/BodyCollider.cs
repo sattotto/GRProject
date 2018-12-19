@@ -14,6 +14,7 @@ public class BodyCollider : MonoBehaviour {
 			myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().getObjectNarrative(other.gameObject.name));
 			int count = PlayerPrefs.GetInt("get",0) + 1;
 			PlayerPrefs.SetInt("get",count);
+			GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("get");
 			myGrabController.rightHandObject = null;
 			Destroy(other.gameObject); // myGrabController.rightHandObject
 		}
@@ -21,6 +22,7 @@ public class BodyCollider : MonoBehaviour {
 			myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().getObjectNarrative(other.gameObject.name));
 			int count = PlayerPrefs.GetInt("get",0) + 1;
 			PlayerPrefs.SetInt("get",count);
+			GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("get");
 			myGrabController.leftHandObject = null;
 			Destroy(other.gameObject); // myGrabController.leftHandObject ??
 		}
