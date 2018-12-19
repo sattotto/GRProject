@@ -73,49 +73,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    // public static void setMyGetDictionary(string key) {
-    //     if (!getList.ContainsKey(key)) {
-    //         getList.Add(key, 1);
-    //     } else {
-    //         getList[key] += 1;
-    //     }
-    //     int sum = 0;
-    //     foreach(KeyValuePair<string, int> item in getList) {
-    //         sum += item.Value;
-    //         Debug.Log(item.Key + " : " + item.Value);
-    //     }
-
-    //     if (sum > 3) {
-    //         FadeController.isFadeOut = true;
-    //         endFlg = true;
-    //         myTextWriter.writeEnding("end0"); // end 0
-    //     }
-    // }
-
-    // public static void setMyEatDictionary(string key) {
-    //     if (!getList.ContainsKey(key)) {
-    //         eatList.Add(key, 1);
-    //     } else {
-    //         eatList[key] += 1;
-    //     }
-    //     int sum = 0;
-    //     foreach(KeyValuePair<string, int> item in eatList) {
-    //         sum += item.Value;
-    //         if(item.Key == "毒キノコ" && item.Value > 1) {
-    //             FadeController.isFadeOut = true;
-    //             endFlg = true;
-    //             myTextWriter.writeEnding("end3"); // end 3
-    //             return;
-    //         }
-    //         Debug.Log(item.Key + " : " + item.Value);  
-    //     }
-    //     if (sum > 3) {
-    //         FadeController.isFadeOut = true;
-    //         endFlg = true;
-    //         myTextWriter.writeEnding("end2"); // end 2
-    //     }
-    // }
-
     public void gameEnd(string prefsKey) {
         if (PlayerPrefs.GetInt(prefsKey,0) > 3) {
             if (prefsKey == "eat") {
