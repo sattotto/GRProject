@@ -8752,6 +8752,11 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1984265557}
+    - target: {fileID: 114230618359686930, guid: a5b8f4efc77d2a644a43d78156f8d015,
+        type: 2}
+      propertyPath: OnFaceGameObject
+      value: 
+      objectReference: {fileID: 1261302158}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5b8f4efc77d2a644a43d78156f8d015, type: 2}
   m_IsPrefabAsset: 0

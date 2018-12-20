@@ -20,31 +20,25 @@ public class GameManager : MonoBehaviour {
 
     private string message = "あなたは，自分の仕事の疲れからいつの間にか寝てしまっていました。\n" +
 		"そしてあなたは誰もいない自分の職場で目を覚ましました。\n\n" +
-		"メッセージを次に飛ばすには手元のコントローラーの親指当たりのボタンを押してね！\n" +
+		"\n" +
 
         "周りを見渡すには右のコントローラーのスティックを使うよ！\n" +
         "周りを見渡してプリンターを見つけよう！\n\n" +
-        "プリンターを見つけたらまたボタンを押してね！\n" +
+        "\n" +
 
-        "次はプリンターのところまで移動してみよう。\n" +
-        "移動には、左のコントローラーのスティックを使うよ！\n\n" +
-        "プリンターの前まで移動したらボタンを押してね。\n" +
+        "次はプリンターのところまで移動してください。\n" +
+        "\n\n" +
+        "\n" +
 
         "プリンターからは黒い円の書かれた紙が出ている。\n" +
-        "その紙をつかんでみよう！画面上に出てる手のアイコンを紙に合わせてどちらかのコントローラーを握りこもう！\n" +
-        "握りこんだままで手を動かしたりしてみよう\n"　+
-        "ボタンを押して次の画面に進んでね。\n" +
+        "この机に対して、紙を当てて中から物を取り出す動作をしてみましょう。\n" +
+        "\n"　+
+        "\n" +
         
-        "この黒い円は机とかの中から物を取り出すことができるよ！\n" +
-        "この机に対して、紙を当てて中から物を取り出す動作をしてみよう！\n" +
+        "\n" +
+        "この机に対して、紙を当てて中から物を取り出す動作をしてみましょう。\n" +
         "一度どのような動作か近くのお兄さんに聞いて実践をしてみよう。\n\n" +
-
-        "取り出した物体に対して、投げる/置く、食べる/飲む、手に入れるなどの動作をすることができるよ！\n" +
-        "投げる/置く ... コントローラーを振りながら握る力を弱める(中指のボタンを離す)。\n" +
-        "食べる/飲む ... 食べれそうなものを自分の顔のほうへもっていくと食べたりすることができる。\n" +
-        "手に入れる　... 自分の腰の後ろに物体を回すようにするとその動作ができる。\n" +
         
-        "これで操作説明は終了です！\n" +
         "この黒い円を使っていろいろと行動をしてみて自分の物語を作ろう！";
     
 	// Use this for initialization
@@ -74,16 +68,51 @@ public class GameManager : MonoBehaviour {
     }
 
     public void gameEnd(string prefsKey) {
+        string endMessage = "";
         if (PlayerPrefs.GetInt(prefsKey,0) > 3) {
             if (prefsKey == "eat") {
                 FadeController.isFadeOut = true;
                 endFlg = true;
                 myTextWriter.writeEnding("end0"); // end 0
+                TextAsset txtFile = Resources.Load(string.Format("Narrative/end0")) as TextAsset; // Resouces/Narrative下の.txt読み込み
+                StringReader reader = new StringReader(txtFile.text);
+                while (reader.Peek() != -1) {
+                    string line = reader.ReadLine();
+                    endMessage += line + "\n";
+                }
+                var textObject = new GameObject("Text");
+                textObject.transform.parent = hoge.transform;
+                var text = textObject.AddComponent<Text>();
+                text.rectTransform.sizeDelta = Vector2.zero;
+                text.rectTransform.anchorMin = Vector2.zero;
+                text.rectTransform.anchorMax = Vector2.one;
+                text.rectTransform.anchoredPosition = new Vector2(.5f, .5f);
+                text.text = endMessage;
+                text.alignment = TextAnchor.MiddleCenter;
+                text.font = Resources.FindObjectsOfTypeAll<Font>()[0];
+                text.fontSize = 20;
             }
             if (prefsKey == "get") {
                 FadeController.isFadeOut = true;
                 endFlg = true;
                 myTextWriter.writeEnding("end2"); // end 2
+                TextAsset txtFile = Resources.Load(string.Format("Narrative/end2")) as TextAsset; // Resouces/Narrative下の.txt読み込み
+                StringReader reader = new StringReader(txtFile.text);
+                while (reader.Peek() != -1) {
+                    string line = reader.ReadLine();
+                    endMessage += line + "\n";
+                }
+                var textObject = new GameObject("Text");
+                textObject.transform.parent = hoge.transform;
+                var text = textObject.AddComponent<Text>();
+                text.rectTransform.sizeDelta = Vector2.zero;
+                text.rectTransform.anchorMin = Vector2.zero;
+                text.rectTransform.anchorMax = Vector2.one;
+                text.rectTransform.anchoredPosition = new Vector2(.5f, .5f);
+                text.text = endMessage;
+                text.alignment = TextAnchor.MiddleCenter;
+                text.font = Resources.FindObjectsOfTypeAll<Font>()[0];
+                text.fontSize = 20;        
             }
         }
     }
