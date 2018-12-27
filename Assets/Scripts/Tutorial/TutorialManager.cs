@@ -15,7 +15,7 @@ public class TutorialManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		msgScript.SetMessagePanel("これからシステムのチュートリアルを始めます。\n" +
-		"メッセージ送りにはA,B、X,Yのボタンを押してください。\n\n" +
+		"メッセージ送りにはA、B、X、Yのボタンを押してください。\n\n" +
 		"\n" +
 
         "周りを見渡すには右のコントローラーのスティックを使います。\n" +
@@ -31,11 +31,12 @@ public class TutorialManager : MonoBehaviour {
         "\n"　+
         "つかむには中指当たりのボタンを押すとつかむことができます。\n" +
 
-        "物体に対して、投げる/置く、食べる/飲む、手に入れるなどの動作をすることができます。\n" +
+        "物体に対して、投げる/置く、食べる/飲む、手に入れるなどの動作をすることができまます。\n" +
         "投げる/置く ... コントローラーを振りながら握る力を弱める(中指のボタンを離す)。\n" +
-        "食べる/飲む ... 食べれそうなものを自分の顔へもっていくと食べたりすることができる。\n" +
-        "手に入れる　... 自分の腰の後ろに物体を回すようにするとその動作ができる。\n" +
+        "食べる/飲む ... 食べれそうなものを自分の顔へもっていくと食べたりすることができます。\n" +
+        "手に入れる　... 自分の腰の後ろに物体を回すようにするとその動作ができます。\n" +
         
+		
         "これで操作説明は終了です！\n" +
         "物語生成フェーズに移動する際は言ってください");
 		duration = 0;
@@ -48,7 +49,7 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 	private void nextStage() {
-		if(VRCharacter.transform.position.y < -1 || Input.GetKeyDown(KeyCode.Return) || duration > 300) {
+		if(VRCharacter.transform.position.y < -1 || Input.GetKeyDown(KeyCode.Return) || duration > 250) {
 			SceneManager.LoadScene("Main");
 		}
 	}

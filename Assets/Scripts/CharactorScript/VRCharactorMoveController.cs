@@ -26,16 +26,18 @@ public class VRCharactorMoveController : MonoBehaviour {
 
     // 食べる、飲むなどの処理
     void OnTriggerEnter(Collider other) {
-        if (myGrabController.rightHandObjectGrabing() && myGrabController.rightHandObject == other.gameObject && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
+        if (myGrabController.rightHandObjectGrabing() && myGrabController.rightHandObject == other.gameObject && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink" || other.gameObject.tag == "test")) {
             myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(other.gameObject.name, other.gameObject.tag));
+            myGrabController.myTextWriter.writeText_non(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative_non(other.gameObject.name, other.gameObject.tag));
             int count = PlayerPrefs.GetInt("eat",0) + 1;
 			PlayerPrefs.SetInt("eat",count);
             GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("eat");
             myGrabController.rightHandObject = null;
 			Destroy(other.gameObject); // myGrabController.rightHandObject
         }
-        if (myGrabController.leftHandObjectGrabing() && myGrabController.leftHandObject == other.gameObject && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
+        if (myGrabController.leftHandObjectGrabing() && myGrabController.leftHandObject == other.gameObject && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink" || other.gameObject.tag == "test")) {
             myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(other.gameObject.name, other.gameObject.tag));
+            myGrabController.myTextWriter.writeText_non(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative_non(other.gameObject.name, other.gameObject.tag));
             int count = PlayerPrefs.GetInt("eat",0) + 1;
 			PlayerPrefs.SetInt("eat",count);
             GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("eat");

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     private TextWriter myTextWriter;
     public static GameObject hoge;
     private static string filePath;
+    public bool isTutorial = false;
 
     private float duration;
     private static bool endFlg = false;
@@ -22,24 +23,21 @@ public class GameManager : MonoBehaviour {
 		"そしてあなたは誰もいない自分の職場で目を覚ましました。\n\n" +
 		"\n" +
 
-        "周りを見渡すには右のコントローラーのスティックを使うよ！\n" +
+        "周りを見渡すには右のコントローラーのスティックを使います。\n" +
         "周りを見渡してプリンターを見つけよう！\n\n" +
         "\n" +
 
+        "移動するには左のコントローラーのスティックを使います。\n" +
         "次はプリンターのところまで移動してください。\n" +
         "\n\n" +
-        "\n" +
 
         "プリンターからは黒い円の書かれた紙が出ている。\n" +
         "この机に対して、紙を当てて中から物を取り出す動作をしてみましょう。\n" +
         "\n"　+
-        "\n" +
+        "この黒い円を使っていろいろと行動をしてみて自分の物語を作ろう！\n" +
         
-        "\n" +
-        "この机に対して、紙を当てて中から物を取り出す動作をしてみましょう。\n" +
-        "一度どのような動作か近くのお兄さんに聞いて実践をしてみよう。\n\n" +
-        
-        "この黒い円を使っていろいろと行動をしてみて自分の物語を作ろう！";
+        "この黒い円を使っていろいろと行動をしてみて自分の物語を作ろう！\n\n\n\n"
+        ;
     
 	// Use this for initialization
 	void Start () {
@@ -48,6 +46,9 @@ public class GameManager : MonoBehaviour {
         myTextWriter.writeOpening("start");
         msgScript.SetMessagePanel(message);
         duration = 0;
+        Debug.Log(PlayerPrefs.GetInt("get"));
+        Debug.Log(PlayerPrefs.GetInt("eat"));
+        PlayerPrefs.DeleteAll();
 	}
 
     // Update is called once per frame
@@ -59,22 +60,16 @@ public class GameManager : MonoBehaviour {
             endFlg = true;
             myTextWriter.writeEnding("end1"); // end 1
         }
-
-        if (Input.GetKeyDown(KeyCode.Return)) {
-            Debug.Log(PlayerPrefs.GetInt("get"));
-            Debug.Log(PlayerPrefs.GetInt("eat"));
-            PlayerPrefs.DeleteAll();
-        }
     }
 
     public void gameEnd(string prefsKey) {
         string endMessage = "";
-        if (PlayerPrefs.GetInt(prefsKey,0) > 3) {
+        if (PlayerPrefs.GetInt(prefsKey,0) > 3 && !isTutorial) {
             if (prefsKey == "eat") {
                 FadeController.isFadeOut = true;
                 endFlg = true;
-                myTextWriter.writeEnding("end0"); // end 0
-                TextAsset txtFile = Resources.Load(string.Format("Narrative/end0")) as TextAsset; // Resouces/Narrative下の.txt読み込み
+                myTextWriter.writeEnding("end2"); // end 2
+                TextAsset txtFile = Resources.Load(string.Format("Narrative/end2")) as TextAsset; // Resouces/Narrative下の.txt読み込み
                 StringReader reader = new StringReader(txtFile.text);
                 while (reader.Peek() != -1) {
                     string line = reader.ReadLine();
@@ -95,8 +90,8 @@ public class GameManager : MonoBehaviour {
             if (prefsKey == "get") {
                 FadeController.isFadeOut = true;
                 endFlg = true;
-                myTextWriter.writeEnding("end2"); // end 2
-                TextAsset txtFile = Resources.Load(string.Format("Narrative/end2")) as TextAsset; // Resouces/Narrative下の.txt読み込み
+                myTextWriter.writeEnding("end0"); // end 0
+                TextAsset txtFile = Resources.Load(string.Format("Narrative/end0")) as TextAsset; // Resouces/Narrative下の.txt読み込み
                 StringReader reader = new StringReader(txtFile.text);
                 while (reader.Peek() != -1) {
                     string line = reader.ReadLine();

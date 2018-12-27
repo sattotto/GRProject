@@ -33,14 +33,17 @@ public class GrabController : MonoBehaviour {
             if (grabHand == "Right") { rightHandObject = obj; }
             if (grabHand == "Left") { leftHandObject = obj; }
             myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().GrabNarrative(objectName, objectKnowledgeList[index][1]));
+            myTextWriter.writeText_non(GameObject.Find("GameManager").GetComponent<NarrativeController>().GrabNarrative_non(objectName, objectKnowledgeList[index][1]));
             resetParam();
         }
         if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2 && rightHandObjectGrabing() ) {
             myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().putThrowNarrative(rightHandObject.name));
+            myTextWriter.writeText_non(GameObject.Find("GameManager").GetComponent<NarrativeController>().putThrowNarrative_non(rightHandObject.name));
             rightHandObject = null;
         }
         if (OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) < 0.2 && leftHandObjectGrabing()) {
             myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().putThrowNarrative(leftHandObject.name));
+            myTextWriter.writeText_non(GameObject.Find("GameManager").GetComponent<NarrativeController>().putThrowNarrative_non(leftHandObject.name));
             leftHandObject = null;
         }
         if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) < 0.2) { rightHandObject = null; }
@@ -85,7 +88,7 @@ public class GrabController : MonoBehaviour {
 
     public bool rightHandObjectGrabing() {
         if (rightHandObject != null) {
-            if (rightHandObject.tag != "item0" && rightHandObject.tag != "targetObj-1" && rightHandObject.tag != "Player") {
+            if (rightHandObject.tag != "item0" && rightHandObject.tag != "targetObj-1" && rightHandObject.tag != "Player" && rightHandObject.tag != "Untagged") {
                 return true;
             }
         }
@@ -93,7 +96,7 @@ public class GrabController : MonoBehaviour {
     }
     public bool leftHandObjectGrabing() {
         if (leftHandObject != null) {
-            if (leftHandObject.tag != "item0" && leftHandObject.tag != "targetObj-1" && leftHandObject.tag != "Player") {
+            if (leftHandObject.tag != "item0" && leftHandObject.tag != "targetObj-1" && leftHandObject.tag != "Player" && leftHandObject.tag != "Untagged") {
                 return true;
             }
         }
