@@ -10,6 +10,7 @@ TagManager:
   - eat
   - drink
   - hand
+  - test
   layers:
   - Default
   - TransparentFX

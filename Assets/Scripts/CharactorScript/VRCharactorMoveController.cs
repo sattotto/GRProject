@@ -13,9 +13,11 @@ public class VRCharactorMoveController : MonoBehaviour {
     private const float ANGLE_LIMIT_DOWN = -60f;
 
     private TextWriter myTextWriter;
+    private GrabController myGrabController;
 
     void Start () {
         myTextWriter = new TextWriter();
+        myGrabController = GameObject.Find("GameManager").GetComponent<GrabController>();
     }  
     void Update() {
         MoveController();
@@ -23,14 +25,24 @@ public class VRCharactorMoveController : MonoBehaviour {
     }
 
     // 食べる、飲むなどの処理
-    void OnTriggerStay(Collider other) {
-        if (GrabController.grabingObjectFlg && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink")) {
-            myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(GrabController.grabingObjectName, other.gameObject.tag));
-            int count = PlayerPrefs.GetInt(GrabController.grabingObjectName+"_eat",0);
-			PlayerPrefs.SetInt(GrabController.grabingObjectName+"_eat",count);
-            GrabController.grabingObjectName = "";
-            GrabController.grabingObjectFlg = false;
-            Destroy(other.gameObject);
+    void OnTriggerEnter(Collider other) {
+        if (myGrabController.rightHandObjectGrabing() && myGrabController.rightHandObject == other.gameObject && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink" || other.gameObject.tag == "test")) {
+            myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(other.gameObject.name, other.gameObject.tag));
+            myGrabController.myTextWriter.writeText_non(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative_non(other.gameObject.name, other.gameObject.tag));
+            int count = PlayerPrefs.GetInt("eat",0) + 1;
+			PlayerPrefs.SetInt("eat",count);
+            GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("eat");
+            myGrabController.rightHandObject = null;
+			Destroy(other.gameObject); // myGrabController.rightHandObject
+        }
+        if (myGrabController.leftHandObjectGrabing() && myGrabController.leftHandObject == other.gameObject && (other.gameObject.tag == "eat" || other.gameObject.tag == "drink" || other.gameObject.tag == "test")) {
+            myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative(other.gameObject.name, other.gameObject.tag));
+            myGrabController.myTextWriter.writeText_non(GameObject.Find("GameManager").GetComponent<NarrativeController>().eatDrinkNarrative_non(other.gameObject.name, other.gameObject.tag));
+            int count = PlayerPrefs.GetInt("eat",0) + 1;
+			PlayerPrefs.SetInt("eat",count);
+            GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("eat");
+            myGrabController.leftHandObject = null;
+			Destroy(other.gameObject); // myGrabController.rightHandObject
         }
     }
 

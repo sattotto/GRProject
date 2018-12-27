@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class NarrativeController : MonoBehaviour {
 
+    private GameManager myGameManager;
+
+    void Start() {
+        myGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     public enum EmotionEnum
     {
         Joy, Fear, Disgust, Sadness, Anger, Surprise, Contempt, None
@@ -29,6 +34,11 @@ public class NarrativeController : MonoBehaviour {
         return getEmotionText() + targetObj + "から、" + grabObj + "を取り出した。";
     }
 
+    public string GrabNarrative_non(string targetObj, string grabObj) {
+        sendMessageScript(getEmotionText() + targetObj + "から、" + grabObj + "を取り出した。");
+        return targetObj + "から、" + grabObj + "を取り出した。";
+    }
+
     public string putThrowNarrative(string grabObj){
         if(OVRInput.GetLocalControllerVelocity (OVRInput.Controller.LTouch).magnitude > 0.7 || OVRInput.GetLocalControllerVelocity (OVRInput.Controller.RTouch).magnitude > 0.7) {
             sendMessageScript(getEmotionText() + grabObj + "を投げた。");
@@ -38,8 +48,17 @@ public class NarrativeController : MonoBehaviour {
         return getEmotionText() + grabObj + "を置いた。";
     }
 
+    public string putThrowNarrative_non(string grabObj){
+        if(OVRInput.GetLocalControllerVelocity (OVRInput.Controller.LTouch).magnitude > 0.7 || OVRInput.GetLocalControllerVelocity (OVRInput.Controller.RTouch).magnitude > 0.7) {
+            sendMessageScript(getEmotionText() + grabObj + "を投げた。");
+            return grabObj + "を投げた。";
+        }
+        sendMessageScript(getEmotionText() + grabObj + "を置いた。");
+        return grabObj + "を置いた。";
+    }
+
     public string eatDrinkNarrative(string grabObj, string grabObjTag) {
-        if (grabObjTag == "eat") {
+        if (grabObjTag == "eat" || grabObjTag == "test") {
             sendMessageScript(getEmotionText() + grabObj + "を食べた。");
             return getEmotionText() + grabObj + "を食べた。";
         }
@@ -50,9 +69,16 @@ public class NarrativeController : MonoBehaviour {
         return "";
     }
 
-    public string viewObjectNarrative(string grabObj) {
-        sendMessageScript(getEmotionText() + grabObj + "観察した。");
-        return getEmotionText() + grabObj + "観察した。";
+    public string eatDrinkNarrative_non(string grabObj, string grabObjTag) {
+        if (grabObjTag == "eat" || grabObjTag == "test") {
+            sendMessageScript(getEmotionText() + grabObj + "を食べた。");
+            return grabObj + "を食べた。";
+        }
+        if (grabObjTag == "drink") {
+            sendMessageScript(getEmotionText() + grabObj + "を飲んだ。");
+            return grabObj + "を飲んだ。";
+        }
+        return "";
     }
 
     public string getObjectNarrative(string grabObj) {
@@ -60,8 +86,14 @@ public class NarrativeController : MonoBehaviour {
         return getEmotionText() + grabObj + "を手に入れた。";
     }
 
+    public string getObjectNarrative_non(string grabObj) {
+        sendMessageScript(getEmotionText() + grabObj + "を手に入れた。");
+        return grabObj + "を手に入れた。";
+    }
+
     private void sendMessageScript(string message) {
-        GetComponent<GameManager>().messageShow(message);
+        Debug.Log(message);
+        myGameManager.messageShow(message);
     }
 }
 

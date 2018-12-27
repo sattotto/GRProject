@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class BodyCollider : MonoBehaviour {
 
-	private TextWriter myTextWriter;
+	private GrabController myGrabController;
 
 	void Start() {
-		myTextWriter = new TextWriter();
-		
+		myGrabController = GameObject.Find("GameManager").GetComponent<GrabController>();
 	}
 	void OnTriggerEnter(Collider other) {
-		if (GrabController.grabingObjectFlg && (other.gameObject.tag == "grabObj" || other.gameObject.tag == "drink" || other.gameObject.tag == "eat")) {
-			myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().getObjectNarrative(GrabController.grabingObjectName));
-			Destroy(other.gameObject);
-			int count = PlayerPrefs.GetInt(GrabController.grabingObjectName+"_get",0);
-			PlayerPrefs.SetInt(GrabController.grabingObjectName+"_get",count);
-			GrabController.grabingObjectFlg = false;
-            GrabController.grabingObjectName = "";
-			
+		if (myGrabController.rightHandObjectGrabing() && myGrabController.rightHandObject == other.gameObject) {
+			myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().getObjectNarrative(other.gameObject.name));
+			myGrabController.myTextWriter.writeText_non(GameObject.Find("GameManager").GetComponent<NarrativeController>().getObjectNarrative_non(other.gameObject.name));
+			int count = PlayerPrefs.GetInt("get",0) + 1;
+			PlayerPrefs.SetInt("get",count);
+			GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("get");
+			myGrabController.rightHandObject = null;
+			Destroy(other.gameObject); // myGrabController.rightHandObject
+		}
+		if (myGrabController.leftHandObjectGrabing() && myGrabController.leftHandObject == other.gameObject) { 
+			myGrabController.myTextWriter.writeText(GameObject.Find("GameManager").GetComponent<NarrativeController>().getObjectNarrative(other.gameObject.name));
+			myGrabController.myTextWriter.writeText_non(GameObject.Find("GameManager").GetComponent<NarrativeController>().getObjectNarrative_non(other.gameObject.name));
+			int count = PlayerPrefs.GetInt("get",0) + 1;
+			PlayerPrefs.SetInt("get",count);
+			GameObject.Find("GameManager").GetComponent<GameManager>().gameEnd("get");
+			myGrabController.leftHandObject = null;
+			Destroy(other.gameObject); // myGrabController.leftHandObject ??
 		}
 	}
 }

@@ -33,6 +33,7 @@ public class MessageScript : MonoBehaviour {
     //　メッセージをすべて表示したかどうか
     private bool isEndMessage = false;
     private bool skipFlg = false;
+    public bool isTutorial = true;
 
     void Start() {
         clickIcon = transform.Find("Panel/Image").GetComponent<Image>();
@@ -107,6 +108,7 @@ public class MessageScript : MonoBehaviour {
                     nowTextNum = 0;
                     isEndMessage = true;
                     transform.GetChild(0).gameObject.SetActive(false);
+                    isTutorial = false;
                     //　それ以外はテキスト処理関連を初期化して次の文字から表示させる
                 }
             }
@@ -123,6 +125,8 @@ public class MessageScript : MonoBehaviour {
     }
 
     private void messageSkip(){
-        skipFlg = true;
+        if (!isTutorial) {
+            skipFlg = true;
+        }
     }
 }
